@@ -1,0 +1,1233 @@
+@charset "UTF-8";
+/*          Font      */
+@font-face {
+  font-family: 'Roboto';
+  src: url("../fonts/Roboto-Regular.ttf") format("truetype"); }
+@font-face {
+  font-family: 'RobotoB';
+  src: url("../fonts/Roboto-Bold.ttf") format("truetype"); }
+@font-face {
+  font-family: 'UVNKIEU';
+  src: url("../fonts/UVNKIEU_R_1.TTF") format("truetype"); }
+@font-face {
+  font-family: 'UVNKIEUB';
+  src: url("../fonts/UVNKIEU_0.TTF") format("truetype"); }
+
+@font-face {
+  font-family: 'OpenSans';
+  src: url("../fonts/OpenSans-Regular.ttf") format("truetype"); }
+@font-face {
+  font-family: 'OpenSansB';
+  src: url("../fonts/OpenSans-Bold.ttf") format("truetype"); }
+@font-face {
+  font-family: 'OpenSansI';
+  src: url("../fonts/OpenSans-Italic.ttf") format("truetype"); }
+/*            End Font      */
+body{
+	font-size: 14px;
+	font-family: 'Roboto';
+	color: #000;
+	line-height: 1.5;
+}
+.s-content ol {
+  list-style: decimal;
+  margin-left: 15px;
+  margin-bottom: 10px; }
+.s-content ul {
+  list-style: initial;
+  margin-left: 15px;
+  margin-bottom: 10px; }
+.s-content li {
+  list-style: inherit;
+  margin-bottom: 5px; }
+.s-content p {
+  margin-bottom: 10px; }
+.s-content img {
+  display: block;
+  max-width: 100%;
+  margin: 10px auto;
+  width: auto !important;
+  height: auto !important; }
+.s-content table, .s-content iframe, iframe {
+  max-width: 100%; }
+
+.row-flex{
+	display: flex;
+	flex-wrap: wrap;
+}
+.mt-3 {
+	margin-top: 30px;
+}
+
+.mb-3 {
+	margin-bottom: 30px;
+}
+
+.m-top0{
+	margin-top: 0px!important;
+}
+.p-top30{
+	padding-top: 30px;
+}
+.p-top20{
+	padding-top: 20px;
+}
+.p-top40{
+	padding-top: 40px;
+}
+.p-bot20{
+	padding-bottom: 20px;
+}
+.p-bot30{
+	padding-bottom: 30px;
+}
+.p-top10{
+	padding-top: 10px;
+}
+.p-top50{
+	padding-top: 50px;
+}
+.c-img {
+  display: block;
+  position: relative;
+  padding-top: 66%; }
+  .c-img img, .c-img .bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit; }
+
+
+
+
+/*------------------------------------------- Trang Index -------------------------------------------*/
+/*			Header*/
+.header{
+	background: #8f205f;
+	color: #fff;
+	font-family: 'RobotoB';
+	line-height: 40px;
+}
+.logo{
+	max-height: 40px;
+	z-index: 1;
+}
+.logo a{
+	display: block;
+}
+.logo a img{
+    box-shadow: 0px 0px 10px 1px #b1a8a8;
+    width: 137px;
+    height: 127px;
+}
+.phone, .email, .cart, .cart p, .login, .register{
+	display: inline-block;
+}
+.email{
+	margin-left: 20px;
+}
+.cart{
+	float: right;
+}
+
+
+
+/*			Menu*/
+.header-menu{
+	color: #fff;
+	font-family: 'RobotoB';
+	background-image: linear-gradient(to right, #8f205f , #d07070);
+}
+.header-menu.fixed{
+	position: fixed;
+	left: 0;
+	right: 0;
+	width: 100%;
+	top:0;
+	z-index: 1;
+}
+.menu1{
+	display: none;
+}
+.menu{
+	text-transform: uppercase;
+	display: inline-block;
+}
+.btn-menu{
+	display: none;
+	z-index: 1;
+	position: absolute;
+	border-radius: 100%;
+	color: #8f205f;
+	width: 35px;
+	height: 35px;
+	background: rgb(245, 245, 245);
+	top: -37px;
+	right: 5%;
+}
+.menu ul li{
+	padding-right: 20px;
+	display: inline-block;
+	line-height: 50px;
+}
+.menu ul li a{
+	display: inline-block;
+}
+.menu ul li:hover ul{
+	opacity: 1;
+	z-index: 1;
+	top: 100%;
+	transition: .2s;
+    pointer-events: all;
+}
+	.menu li ul{
+		position: absolute;
+		top: 100px;
+		z-index: 0;
+		padding-top: 5px;
+		opacity: 0;
+	    pointer-events: none;
+	}
+	.menu li ul li{
+		display: block;
+		line-height: 30px;
+		background: rgba(189, 89, 107, 0.73);
+		padding-right: 0px;
+	}
+	.menu li ul li a{
+		padding: 5px 20px 5px 10px ;
+
+		min-width: 200px;
+	}
+	.menu li ul li a:hover{
+		background: #8f205f;
+		transition: .2s;
+	}
+.search{
+	float: right;
+	margin-top: 4px;
+}
+.search form{
+	position: relative;
+	display: inline-block;
+}
+.search input{
+	color: #000;
+	border: none;
+	border-radius: 30px;
+	padding: 10px 40px 10px 15px;
+}
+.search input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #999999;
+  font-style: italic;
+  font-family: 'Roboto';
+}
+.search input::-moz-placeholder { /* Firefox 19+ */
+  color: #999999;
+  font-style: italic;
+  font-family: 'Roboto';
+}
+.search input:-ms-input-placeholder { /* IE 10+ */
+  color: #999999;
+  font-style: italic;
+  font-family: 'Roboto';
+}
+.search input:-moz-placeholder { /* Firefox 18- */
+  color: #999999;
+  font-style: italic;
+  font-family: 'Roboto';
+}
+.search button{
+	color: #8f205f;
+	position: absolute;
+	right: 10px;
+	top: 9px;
+	background: none;
+}
+/*			End Menu*/
+
+
+/*			Slider*/
+.slider-banner li.slick-active{
+	background: #8f205f;
+}
+.slider-banner{
+	position: relative;
+}
+.slider-banner ul{
+	position: absolute;
+	bottom: 50%;
+	left: 2%;
+}
+.slider-banner a{
+	padding-top: 43%;
+}
+.slider-banner ul li{
+	/*display: inline-block;*/
+	border-radius: 100%;
+	background: rgba(189, 89, 107, 0.49);
+	/*margin-right: 10px;*/
+	margin-bottom: 5px;
+}
+.slider-banner ul li:last-child{
+	margin-right: 0px;
+}
+.slider-banner ul li button{
+	display: block;
+	width: 15px;
+	height: 15px;
+	opacity: 0;
+}
+/*			End Slider*/
+/*			End Header*/
+
+
+/*			Content*/
+.bg1{
+	background: url('../images/web/bg1.png');
+}
+.advantages{
+	background: #8f205f;
+	color: #fff;
+}
+.advantages span{
+	border-radius: 100%;
+	border: 1px solid #fff;
+	width: 60px;
+	height: 60px;
+	margin: 15px;
+	float: left;
+}
+.advantages img{
+	padding: 18px;
+	width: 100%;
+	height: 100%;
+}
+.advantage{
+   margin-left: 70px;
+   padding: 25px 10px;
+}
+.advantage h3{
+	font-family: 'RobotoB';
+	text-transform: uppercase;
+}
+.advantage p{
+	color: rgba(235, 235, 235, 0.6);
+	font-size: 13px;
+}
+.title{
+	text-align: center;
+}
+.title h1, .title h2{
+	text-transform: uppercase;
+	font-family: 'RobotoB';
+	font-size: 24px;
+	display: inline-block;
+	padding-top: 50px;
+	position: relative;
+}
+/*.title h1:after, .title h2:after{
+	position: absolute;
+	content: '';
+	background: url('../images/web/bg-right.png') no-repeat bottom right;
+	width: 45px;
+	height: 20px;
+}
+.title h1:before, .title h2:before{
+	position: absolute;
+	content: '';
+	background: url('../images/web/bg-left.png') no-repeat bottom left;
+	width: 45px;
+	height: 20px;
+	left: -45px;
+}*/
+
+
+.product{
+	box-shadow: 0px 2px 15px 2px rgba(153, 153, 153, 0.5);
+}
+.light{
+	position: relative;
+	overflow: hidden;
+}
+.light:after {
+    position: absolute;
+    content: '';
+    background: rgba(255, 255, 255, 0.3);
+    width: 105%;
+    height: 150%;
+    -webkit-transform: skew(65deg);
+    -moz-transform: skew(65deg);
+    -o-transform: skew(65deg);
+    top: -295px;
+    right: -10px;
+}
+.light:hover:after {
+    bottom: -270px;
+    transition: 1.5s;
+    top: 270px;
+}
+.ct{
+	margin-left: 15px;
+	margin-top: 10px;
+	padding-bottom: 15px;
+	margin-right: 10px;
+}
+.ct h3{
+	text-transform: uppercase;
+	font-family: 'RobotoB';
+}
+.ct span, .ct strike{
+	display: inline-block;
+	padding-top: 10px;
+}
+.ct span{
+	font-size: 13px;
+	font-family: 'RobotoB';
+	padding-top: 10px;
+	color: #8f205f;
+}
+.ct strike{
+	font-size: 12px;
+	float: right;
+	color: #b0afaf;
+}
+
+
+
+
+.contact{
+	background: linear-gradient(to right, #8f205f , #d07070);
+	color: #fff;
+	font-size: 18px;
+	text-align: center;
+	margin-top: 60px;
+}
+.contact p{
+	text-transform: uppercase;
+	font-family: 'RobotoB';
+	margin-top: 80px;
+}
+.contact a{
+	border: 2px solid #fff;
+	margin-top: 35px;
+	display: inline-block;
+	padding: 15px 30px;
+	margin-bottom: 85px;
+}
+/*			Tin tức*/
+.news{
+	line-height: 1.5;
+}
+.news .title-news{
+	color: #000;
+}
+.news h3, .news p{
+	margin-bottom: 10px;
+}
+.news h3{
+	margin-top: 15px;
+	text-transform: uppercase;
+}
+.news p{
+	font-size: 13px;
+	color: rgba(102, 102, 102, 0.7);
+}
+.news span, .news a{
+	font-size: 12px;
+}
+.news span{
+	color: rgba(102, 102, 102, 0.4);
+}
+.news a{
+	color: #8f205f;
+}
+
+.pays{
+	text-transform: uppercase;
+	font-size: 12px;
+	position: relative;
+}
+.pays span{
+	border-radius: 100%;
+	border: 1px solid #fff;
+	width: 80px;
+	height: 80px;
+	display: inline-block;
+	margin: 15px;
+	background: #8f205f;
+}
+.pays img{
+	padding: 20px;
+	width: 100%;
+	height: 100%;
+}
+.pay{
+	position: absolute;
+	display: inline-block;
+	top: 30px;
+}
+.pay span{
+	border-radius: 0px;
+	background: none;
+	color: #8f205f;
+	font-family: 'RobotoB';
+	width: auto;
+	height: auto;
+	margin: 0;
+	display: inline;
+}
+/*			End Tin tức*/
+/*			Content*/
+
+
+
+/*			Footer*/
+footer{
+	font-size: 13px;
+	line-height: 2;
+	background: #eaeaea;
+	padding-top: 30px;
+	padding-bottom: 70px;
+}
+footer h2, footer h3{
+	color: #8f205f;
+	text-transform: uppercase;
+}
+footer h3{
+	font-family: 'RobotoB';
+}
+footer a{
+	display: block;
+}
+.info-contact a{
+	display: inline-block;
+}
+.info-footer a:before, .sup-footer a:before{
+	content: '\f105';
+	font-family: 'FontAwesome';
+	font-weight: bold;
+	padding-right: 5px;
+}
+.info-footer img{
+	margin-top: 20px;
+}
+/*			Footer*/
+.header a:hover, .menu a:hover, .logout button:hover, .account button:hover{
+	color: yellow;
+	transition: .3s;
+}
+.bg1 a:hover,.bg2 a:hover, footer a:hover{
+	color: #8f205f;
+	transition: .3s;
+}
+.contact a:hover{
+	background: #ffff0073;
+	transition: .3s;
+}
+/*------------------------------------------- End Trang Index -------------------------------------------*/
+
+
+
+/*------------------------------------------- Trang Cart -------------------------------------------*/
+.list-item{
+	margin-top: 15px;
+}
+.list-item li{
+	display: inline-block;
+	position: relative;
+}
+.list-item li a{
+	padding-right: 20px;
+}
+.list-item li+li:before{
+	position: absolute;
+	content: "\f101";
+	font-family: 'FontAwesome';
+	display: inline-block;
+	left: -15px;
+}
+.list-item li a:hover, .care a:hover{
+	color: #8f205f;
+	transition: .2s;
+}
+.tags a:hover{
+	background: #8f205f;
+	color: #fff;
+	transition: .2s;
+}
+
+/*			Thông tin người mua*/
+.info-user span, .pay-method span, .shop-cart span{
+	border-radius: 100%;
+	background: #8f205f;
+	padding: 8px 15px;
+	color: #fff;
+	font-size: 24px;
+	font-family: 'RobotoB';
+}
+.info-user h3, .pay-method h3, .shop-cart h3{
+	display: inline-block;
+	font-family: 'RobotoB';
+	text-transform: uppercase;
+	margin-left: 10px;
+}
+.name, .tel, .email-cart, .address{
+	position: relative;
+	margin-top: 10px;
+}
+.info-user form, .pay-method form, .shop-cart form{
+	margin-top: 30px;
+}
+.info-user form i{
+	position: absolute;
+	left: 10px;
+	top: 9px;
+	bottom: 0;
+	color: #777777ab;
+}
+.info-user form input{
+	width: 100%;
+	padding-left: 28px; 
+	height: 35px;
+	border: 1px solid #eaeaea;
+}
+
+/*			Phương thức thanh toán*/
+.pay-method form input{
+	vertical-align: top;
+	opacity: 0;
+}
+.pay-method form label{
+	position: relative;
+	display: inline-block;
+	max-width: 326px;
+	padding-left: 20px;
+	cursor: pointer;
+}
+.pay-method form label:before{
+	position: absolute;
+	content: '';
+	left: -2px;
+	top: 4px;
+	width: 12px;
+	height: 12px;
+	border: 1px solid;
+
+}
+input[type="radio"]:checked + .lbl_pay::before
+{
+	content: '\f00c';
+	font-family: 'FontAwesome';
+	font-size: 8px;
+	padding-left: 1px;
+}
+/*			Giỏ hàng*/
+.shop-cart input{
+	max-width: 65px;
+	text-align: center;
+}
+.shop-cart form button{
+	color: #fff;
+	text-transform: uppercase;
+	background: linear-gradient(to right, #8f205f , #d07070);
+	margin-top: 15px;
+	width: 100%;
+	padding: 15px 0px;
+	font-size: 14px;
+}
+.shop-cart form table{
+	width: 100%;
+}
+.shop-cart td{
+	padding: 10px;
+	vertical-align: top;
+}
+.shop-cart img{
+	border: 1px solid #ebebeb;
+}
+.gia, .tong{
+	color: #8f205f;
+}
+.tong{
+	font-size: 18px;
+}
+
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+.shop-cart p{
+	display: inline-block;
+	max-width: 70px;
+	vertical-align: top;
+	margin-left: 10px;
+}
+.shop-cart a{
+	color: #8f205f;
+	display: block;
+	text-align: center;
+	font-family: 'RobotoB';
+	margin-top: 20px;
+	padding: 15px 0;
+}
+.shop-cart a:hover{
+	background: linear-gradient(to right, #8f205f , #d07070);
+	color: #fff;
+	transition: .5s;
+}
+.shop-cart tr:first-child{
+	background: #ebebeb;
+}
+.sl{
+	position: relative;
+	display: inline-block;
+}
+.sl i{
+	position: absolute;
+	top: 7px;
+	cursor: pointer;
+}
+.fa-minus{
+	left: 5px;
+}
+.fa-plus{
+	right: 5px;
+}
+/*------------------------------------------- End Trang Index -------------------------------------------*/
+
+
+
+
+/*------------------------------------------- Trang News-list -------------------------------------------*/
+.news h3 a:hover{
+	color: #8f205f;
+	transition: .2s;
+}
+.categories{
+	font-size: 13px;
+}
+.news-category h3, .care h3, .content-featured h3, .product-category h3, .price-product-list h3, .product-par h3{
+	font-family: 'RobotoB';
+	font-size: 14px;
+	text-transform: uppercase;
+}
+.news-category ul{
+	margin-top: 10px;
+}
+.news-category ul li{
+	border-bottom: 1px solid #ebebeb;
+	padding: 10px 0;
+}
+.news-category ul li a{
+	position: relative;
+	padding-left: 15px;
+}
+.news-category ul li a:before{
+	position: absolute;
+	content: '';
+	border-radius: 100%;
+	background: #000;
+	width: 5px;
+	height: 5px;
+	left: 2px;
+	top: 5px;
+}
+.news-category ul li a:hover {
+	color: #8f205f;
+}
+.news-category ul li a:hover:before{
+	background: #8f205f;
+}
+.care, .content-featured{
+	margin-top: 40px;
+}
+
+.care a{
+	display: block;
+	padding: 10px 0;
+	border-bottom: 1px solid #ebebeb;
+}
+.content-featured h3{
+	margin-bottom: 25px;
+}
+.content-featured a{
+	display: inline-block;
+	background: #8f205f;
+	padding: 5px 10px;
+	color: #fff;
+	margin-bottom: 5px;
+}
+.content-featured a:hover{
+	background: rgba(143, 32, 95, 0.72);
+}
+.bg-news-list{
+	background: url('../images/web/bg3.png') no-repeat;
+}
+.te-pagination{
+	text-align: center;
+}
+.te-pagination strong{
+	background: #8f205f;
+	color: #fff;
+	border:none;
+}
+.te-pagination a, .te-pagination strong{
+	padding: 10px 15px;
+	border: 1px solid #e1e1e1;
+	border-radius: 5px;
+	display: inline-block;
+}
+.te-pagination a:hover{
+	background: #8f205f;
+	color: #fff;
+	transition: .2s;
+}
+/*------------------------------------------- End Trang News-list -------------------------------------------*/
+
+
+
+
+/*------------------------------------------- Trang Product-list -------------------------------------------*/
+.categories-product-list{
+	font-size: 13px;
+	background: #fbfbfb;
+}
+.categories-product-list a:hover{
+	color: #8f205f;
+}
+.product-category{
+	margin-top: 20px;
+}
+.price-product-list, .product-par{
+	margin-top: 25px;
+}
+.product-category ul, .price-product-list ul, .product-par ul{
+	padding-top: 10px;
+	position: relative;
+}
+.product-category ul:before, .price-product-list ul:before, .product-par ul:before{
+	position: absolute;
+    content: '';
+    left: 0;
+    top: 0;
+    width: 1px;
+    height: calc(100% - 17px);
+    border-left: 1px dashed;
+}
+
+.product-category ul li, .price-product-list ul li, .product-par ul li{
+	padding-left: 35px;
+	position: relative;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.product-category ul li:before, .price-product-list ul li:before, .product-par ul li:before{
+	position: absolute;
+	content: '........';
+	left: 0px;
+	top: 0px;
+}
+.product-par{
+	padding-bottom: 20px;
+}
+.ct h3 a:hover{
+	color: #8f205f;
+	transition: .2s;
+}
+
+/*------------------------------------------- End Trang Product-list -------------------------------------------*/
+
+/*------------------------------------------- Trang News-detail -------------------------------------------*/
+.news-detail h1{
+	font-size: 24px;
+}
+.date{
+	font-size: 12px;
+}
+.date span{
+	color: #999999;
+}
+.date a, .news-other ul li a:hover{
+	color: #8f205f;
+	transition: .3s;
+}
+.news-other{
+	background: #f8f8f8;
+	margin-bottom: 30px;
+}
+.news-other ul{
+	padding: 15px 0;
+}
+.news-other ul li{
+	position: relative;
+	padding-left: 30px;
+}
+.news-other ul li:before{
+	position: absolute;
+	content: '';
+	background: #8f205f;
+	width: 5px;
+	height: 5px;
+	border-radius: 100%;
+	left: 20px;
+	top: 8px;
+}
+.tags{
+	margin-top: 30px;
+}
+.tags a{
+	padding: 5px 10px;
+	border: 1px solid #e1e1e1;
+	color: #999999;
+	display: inline-block;
+}
+.test{
+	max-width: 400px;
+	margin:auto;
+	position: relative;
+}
+.news-category ul li:last-child, .care a:last-child{
+	border-bottom: none;
+}
+.test a{
+	position: absolute;
+    left: 40%;
+    bottom: 100px;
+    color: #28a677;
+    border: 1px solid #28a677;
+    border-radius: 15px;
+    padding: 5px 10px;
+}
+.test a:hover{
+	background: #8f205f;
+	color: #fff;
+	border: 1px solid #8f205f;
+	transition: .3s;
+}
+/*------------------------------------------- End Trang News-detail -------------------------------------------*/
+
+/*------------------------------------------- Trang Product-detail -------------------------------------------*/
+.slider-nav{
+	margin-top: 10px;
+}
+.slider-nav img{
+	height: 100px !important;
+	border:1px solid #ddd;
+}
+.slider-nav .slick-list{
+	margin:0 -10px;
+}
+.slider-nav .slick-slide{
+	margin: 0 10px;
+}
+.slider-nav, .slider-for{
+	cursor: pointer;
+}
+.slider-for{
+	border :1px solid #ddd;
+}
+.sp{
+	position: relative;
+}
+.sp h1, .sp span{
+	font-size: 24px;
+	color: #8f205f;
+}
+.sp span{
+	font-family: 'RobotoB';
+}
+.sp strike{
+	color: #e1e1e1;
+	font-size: 16px;
+	margin-left: 25px;
+}
+.sp a{
+	text-transform: uppercase;
+	background: linear-gradient(to right, #8f205f , #d07070);
+	color: #fff;
+	position: absolute;
+	left: 0;
+	right: 0;
+	text-align: center;
+	padding: 10px 0;
+	margin: 25px 15px 0 15px;
+}
+.category-product h2{
+	color: #8f205f;
+	font-family: 'RobotoB';
+	font-size: 16px;
+	margin-top: 35px;
+	text-transform: uppercase;
+}
+.title-cate{
+	font-family: 'RobotoB';
+	border-bottom: 3px solid #ebebeb;
+	margin-bottom: 25px;
+}
+.title-cate li{
+	display: inline-block;
+	padding-bottom: 10px;
+	position: relative;
+	text-align: center;
+	min-width: 150px;
+}
+.nav-tabs>li.active>a, .nav-tabs>li>a{
+	border: none!important;
+}
+.title-cate li:before{
+	position: absolute;
+	content: '';
+	bottom: -3px;
+	width: 100%;
+	left: 0;
+}
+.title-cate li:hover:before{
+	border-bottom: 3px solid #8f205f;
+}
+.title-cate li:hover{
+	color: #8f205f;
+	transition: .3s;
+}
+.title-cate li a{
+	margin-right: 0;
+	border-radius: 0;
+}
+.title-cate li a:hover{
+	background: none;
+	border: none;
+}
+
+.info-product-detail{
+	margin-top: 25px;
+}
+.info-product-detail span{
+	font-family: 'RobotoB';
+	margin-top: 25px;
+	display: block;
+}
+
+.product-detail img, .product-detail video, .product-detail embed{
+	display: block;
+	margin: auto;
+}
+
+.product-detail h4 {
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.description {
+	margin-top: 30px;
+}
+/*------------------------------------------- End Trang Product-detail -------------------------------------------*/
+.thanhtoan{
+	margin-top: 60px;
+	margin-bottom: 70px;
+}
+
+
+
+/* Hotline*/
+.btn-call {
+  position: fixed;
+  bottom: 30px;
+  left: 40px;
+  z-index: 99;
+  display: none; }
+  
+
+.btn-call span {
+  display: block;
+  font-size: 25px;
+  width: 40px;
+  height: 40px;
+  margin: auto;
+  border-radius: 50%;
+  line-height: 40px;
+  text-align: center;
+  color: #fff;
+  background: #ee3135;
+  position: relative; }
+
+.btn-call span i {
+  -webkit-animation-name: lac;
+  animation-name: lac;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite; }
+
+.btn-call span:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  border: solid 1px rgba(238, 49, 53, 0.6);
+  -webkit-animation-name: zoomin;
+  animation-name: zoomin;
+  -webkit-animation-duration: 1.5s;
+  animation-duration: 1.5s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite; }
+
+.btn-call span:after {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  border-radius: 50%;
+  background: rgba(238, 49, 53, 0.6);
+  z-index: -1;
+  -webkit-animation-name: zoomout;
+  animation-name: zoomout;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-direction: alternate;
+  animation-direction: alternate; }
+
+@keyframes lac {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg); }
+  10% {
+    -webkit-transform: rotate(-25deg);
+            transform: rotate(-25deg); }
+  20% {
+    -webkit-transform: rotate(25deg);
+            transform: rotate(25deg); }
+  30% {
+    -webkit-transform: rotate(-25deg);
+            transform: rotate(-25deg); }
+  40% {
+    -webkit-transform: rotate(25deg);
+            transform: rotate(25deg); }
+  50% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg); } }
+@-webkit-keyframes lac {
+  0% {
+    -webkit-transform: rotate(0deg); }
+  10% {
+    -webkit-transform: rotate(-25deg); }
+  20% {
+    -webkit-transform: rotate(25deg); }
+  30% {
+    -webkit-transform: rotate(-25deg); }
+  40% {
+    -webkit-transform: rotate(25deg); }
+  50% {
+    -webkit-transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(0deg); } }
+@keyframes zoomin {
+  0% {
+    -webkit-transform: scale(0.8);
+            transform: scale(0.8);
+    opacity: 1; }
+  100% {
+    -webkit-transform: scale(2.2);
+            transform: scale(2.2);
+    opacity: .1; } }
+@-webkit-keyframes zoomin {
+  0% {
+    -webkit-transform: scale(0.8);
+    opacity: 1; }
+  100% {
+    -webkit-transform: scale(2.2);
+    opacity: .1; } }
+@keyframes zoomout {
+  0% {
+    -webkit-transform: scale(0.8);
+            transform: scale(0.8);
+    opacity: 1; }
+  100% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+    opacity: .3; } }
+@-webkit-keyframes zoomout {
+  0% {
+    -webkit-transform: scale(0.8);
+    opacity: 1; }
+  100% {
+    -webkit-transform: scale(1.1);
+    opacity: .3; } }
+
+.btn-top{
+	display: none;
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	color: #fff;
+	background: #ba566a;
+	border-radius: 10px;
+}
+.btn-top i{
+	padding: 12px 15px;
+	font-size: 25px;
+}
+/*.bg-color {
+    background-color: rgba(48, 68, 85, 0.74);
+}
+
+.contact-page {
+	background-image: url('../images/web/bg-contact.jpg');
+	background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-position: 50% 50%;
+}*/
+
+.text-contact{
+	line-height: 1.6;
+	font-size: 18px;
+}
+
+.text-white {
+	color: #fff;
+}
+
+.pt-100{
+	padding-top: 100px;
+}
+
+.pb-100 {
+	padding-bottom: 100px;
+}
+
+.mt-1 {
+	margin-top: 10px;
+}
+
+.send {
+	padding-left: 40px;
+	padding-right: 40px;
+	font-weight: bold;
+}
+
+.logout button {
+	color: #fff;
+	background: none;
+}
+
+.account button{
+	color: #fff;
+}
+
+.account button:focus {
+	box-shadow: none;
+}
+

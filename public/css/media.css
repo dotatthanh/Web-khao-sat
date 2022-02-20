@@ -1,0 +1,341 @@
+@media (max-width: 1199px){
+	/*Index*/
+	.search input{
+		max-width: 190px;
+	}
+
+	.advantages span {
+	    margin: 10px;
+	}
+	.advantage h3, .advantage p, .pays{
+	    font-size: 11px;
+	}
+	.advantages i {
+	    font-size: 14px;
+	    margin: 10px;
+	}
+	.pays i{
+		margin-right: 10px;
+	}
+	/*Cart*/
+	.pay-method form label {
+	    max-width: 275px;
+	}
+	/*Product-detail*/
+	.info-product-detail {
+	    margin-top: 60px;
+	}
+	
+}
+@media (max-width: 991px){
+	.header {
+		height: 40px;
+	}
+	.light:after{
+		position: static;
+	}
+	.categories-product-list{
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
+	.cart{
+		float: none;
+	}
+	.email, .phone, .login, .register, .account{
+		display: none;
+	}
+	.product-news-list, .news-detail, .test, .row-flex, .product-category{
+		margin-top: 40px;
+	}
+	.list-item{
+		position: absolute;
+	}
+	.logo a img{
+		max-height: 40px;
+		width: 50px;
+	}
+	.btn-top{
+		display: block;
+	}
+	.btn-call {
+		display: block; }
+	/*Index*/
+	.cart {
+	    margin-right: 80px;
+	}
+	.header-menu.fixed{
+		position: static;
+	}
+	.advantage h3, .advantage p, .pays {
+	    font-size: 14px;
+	}
+	.search{
+		margin-top: 0px;
+		position: absolute;
+		top: -35px;
+		right: 100px;
+	}
+	.search input{
+		max-height: 30px;
+	}
+	.search button{
+		top: 4px;
+	}
+	.advantages{
+		margin-bottom: 10px;
+	}
+	.thanhtoan{
+		margin-top: 30px;
+		margin-bottom: 30px;
+	}
+	
+	.menu{
+		display: none;
+	}
+	.menu ul{
+		display: none;
+	}
+	.btn-menu{
+		display: block;
+	}
+	.menu ul li{
+		display: block;
+		line-height: 30px;
+		padding-right: 0px;
+		position: relative;
+	}
+
+	.menu li ul.active{
+		display: block;
+	}
+	.menu ul li i{
+	    position: absolute;
+	    top: 0;
+	    right: 0;
+	    padding: 8px;
+	    background: #fff;
+	    color: #000;
+	    z-index: 1;
+	    cursor: pointer;
+	}
+	.menu ul li a{
+		display: block;
+		border-bottom: 1px solid #eaa;
+	}
+	.menu ul li a:hover{
+		background: #8f205f;
+	}
+	.menu li ul{
+		position: static;
+		opacity: 1;
+		padding-top: 0px;
+	}
+	.menu li ul li{
+		background: none;
+		line-height: 30px;
+	}
+	.menu li ul li a{
+		padding: 0 0 0 20px;
+	}
+	.menu>ul>li:last-child a{
+		border-bottom: none;
+	}
+	footer{
+		padding-bottom: 0;
+	}
+
+	/*Cart*/
+	.shop-cart{
+		margin-top: 30px;
+		margin-bottom: 30px;
+	}
+	.pay-method form label {
+	    max-width: 328px;
+	}
+	.shop-cart p {
+	    max-width: 170px;
+	}
+
+	/*Product-detail*/
+	.sp{
+		margin-top: 30px;
+	}
+	.info-product-detail {
+	    margin-top: 90px;
+	}
+
+	/*News-list*/
+	.categories {
+	    margin-top: 20px;
+	}
+
+
+	.menu1{
+		display: none;
+		overflow-y: auto;
+		background: #fff;
+		color: #000;
+		position: fixed;
+		right: 0;
+		top: 0;
+		z-index: 1;
+		bottom: 0;
+		padding-top: 10px;
+		min-width: 250px;
+	}
+	.menu.show, .menu1.show{
+		display: block;
+	}
+	.menu1 ul li{
+		display: block;
+		position: relative;
+	}
+	.menu1 ul li a{
+		display: block;
+		padding-left: 20px;
+		border-top: 1px solid #ebebeb;
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+	.menu1 ul li a:hover{
+		background: #d07070;
+		color: #fff;
+		transition: .2s;
+	}
+	.menu1 li ul li a{
+		padding-left: 40px;
+	}
+	.menu1 ul li i{
+		position: absolute;
+		top: 12px;
+		padding: 3px 8px;
+		right: 0;
+		font-size: 15px;
+		cursor: pointer;
+	}
+	.menu1 li ul{
+		display: none;
+	}
+	.menu1 li ul.active1{
+		display: block;
+	}
+	.btn-menu1{
+		width: 30px;
+		height: 30px;
+		background: #fff;
+		font-size: 36px;
+		margin-bottom: 30px;
+		margin-left: 215px;
+	}
+}
+@media (max-width: 767px){
+	.shop-cart tr, .shop-cart td{
+		display: block;
+		text-align: right;
+		border: 1px solid #ddd;
+	}
+	.shop-cart thead tr:first-child{
+		display: none;
+	}
+	.shop-cart p{
+		max-width: max-content;
+	}
+	.shop-cart thead tr td:before{
+		content: attr(data-content);
+		float: left;
+		font-family: 'RobotoB';
+	}
+	.contact p {
+	    margin-top: 40px;
+	}
+	.contact a {
+	    margin-bottom: 45px;
+	}
+	.news{
+		max-width: 400px;
+	    margin: auto;
+	}
+	.product {
+	    max-width: 400px;
+	    margin: auto;
+	}
+	.email{
+		display: none;
+	}
+	
+	/*Index*/
+	.advantage {
+	    font-size: 19px;
+	}
+	/*.sup-footer{
+		margin-top: 40px;
+	}*/
+	.pay {
+	    top: 38px;
+	}
+	.slider-banner ul{
+		bottom: 30%;
+	}
+	/*Cart*/
+	.pay-method{
+		margin-top: 30px;
+	}
+	.pay-method form label {
+	    max-width: 415px;
+	}
+	.search{
+		right: 80px;
+	}
+}
+@media (max-width: 480px){
+	.email{
+		display: none;
+	}
+	/*Index*/
+	.cart p{
+		display: none;
+	}
+	.search input{
+		max-width: 145px;
+	}
+	.btn-menu{
+		right: 5%;
+	}
+	.advantage{
+		font-size: 16px;
+	}
+	.pay {
+	    font-size: 12px;
+	}
+	.logo a img{
+		min-width: 40px;
+	}
+	.title h1, .title h2 {
+	    font-size: 22px;
+	}
+	.title h1:before, .title h2:before {
+	    width: 30px;
+	    height: 20px;
+	    left: -30px;
+	}
+	.title h1:after, .title h2:after {
+	    width: 30px;
+	    height: 20px;
+	}
+	/*Cart*/
+	.pay-method form label {
+	    max-width: 274px;
+	}
+	.shop-cart p {
+	    max-width: 70px;
+	}
+}
+@media (max-width: 320px){
+	/*Cart*/
+	.pay-method form label {
+	    max-width: 255px;
+	}
+	.search input {
+	    max-width: 110px;
+	}
+}
