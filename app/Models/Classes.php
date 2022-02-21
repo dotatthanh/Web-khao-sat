@@ -37,4 +37,9 @@ class Classes extends Model
 
         return $result;
     }
+
+    public function results()
+    {
+        return $this->hasMany(Results::class, 'lop_id');
+    }
 }

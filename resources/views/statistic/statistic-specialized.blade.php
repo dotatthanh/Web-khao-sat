@@ -68,7 +68,7 @@
                                                     <td class="text-center">{{ $stt++ }}</td>
                                                     <td>{{ $class->specialized->ma_nganh }}</td>
                                                     <td>{{ $class->count_answer }}</td>
-                                                    <td>{{ $class->answer->noi_dung }}</td>
+                                                    <td>{!! $class->answer ? $class->answer->noi_dung : '<span class="text-danger">Phương án trả lời đã bị xoá</span>' !!}</td>
                                                     <td>{{ $class->question->noi_dung }}</td>
                                                 </tr>
                                             @endforeach
