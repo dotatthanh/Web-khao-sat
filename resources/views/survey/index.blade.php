@@ -30,15 +30,15 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <h2 class="font-weight-bold text-center">NỘI DUNG KHẢO SÁT</h2>
-                                <p class=" text-center">Tình hình việc làm của sinh viên Trường Đại học Trà Vinh sau khi tốt nghiệp</p>
+                                <h1 class="font-weight-bold text-center text-success">NỘI DUNG KHẢO SÁT</h2>
+                                <p class="text-center text-success">Tình hình việc làm của sinh viên Trường Đại học Trà Vinh sau khi tốt nghiệp</p>
                                 <p>Anh/Chị vui lòng dành ít thời gian tham gia phiếu khảo sát này. Thông tin trả lời của Anh/Chị chỉ được sử dụng cho mục đích cải tiến hoạt động Dạy - Học và nâng cao cơ hội việc làm cho sinh viên sau tốt nghiệp.</p>
 
                                 <p class="text-danger">Ngày trả lời khảo sát: {{ date('d-m-Y') }}</p>
 
                                 <form action="{{ route('surveys.store') }}" class="position-relative" method="POST">
                                     @csrf
-                                    <h3>A. THÔNG TIN CÁ NHÂN</h3>
+                                    <h2 class="text-success font-weight-bold">A. THÔNG TIN CÁ NHÂN</h2>
 
                                     <div class="form-group row">
                                         <label for="name" class="col-sm-2 col-form-label">Họ và tên</label>
@@ -88,7 +88,7 @@
                       </div>
                   </div>
 
-                  <h3>B. THÔNG TIN VỀ TÌNH HÌNH VIỆC LÀM</h3>
+                  <h2 class="text-success font-weight-bold">B. THÔNG TIN VỀ TÌNH HÌNH VIỆC LÀM</h2>
 
                   @php
                   $stt = -1;
@@ -98,16 +98,16 @@
                     @php
                     $stt++;
                     @endphp
-                    <div class="question" id="answers{{ $stt }}">
-                        <h5 class="text-danger">{{ $question->ten }}: {{ $question->noi_dung }}</h5>
+                    <div class="question survey_step" id="answers{{ $stt }}" data-step="{{ $stt+1 }}">
+                        <h4 class="text-danger">{{ $question->ten }}: {{ $question->noi_dung }}</h4>
                         @foreach ($question->answers as $answer)
                         <div class="pl-3">
                             @if ($question->cach_chon_dap_an == 1)
-                            <input type="checkbox" name="answers[{{ $stt }}][{{ $question->id }}][{{ $answer->id }}]" value="{{ $answer->id }}" id="answer{{ $answer->id }}" onclick="checked_checkbox_input($(this), 'checked_answer{{ $answer->id }}', {{ $question }})">
+                            <input class="form-check-input" type="checkbox" name="answers[{{ $stt }}][{{ $question->id }}][{{ $answer->id }}]" value="{{ $answer->id }}" id="answer{{ $answer->id }}" data-val="{{ $answer->noi_dung }}">
 
-                            <input type="checkbox" name="check_answers[{{ $stt }}][{{ $question->id }}]" id="checked_answer{{ $answer->id }}" hidden>
+                            <input class="form-check-input" type="checkbox" name="check_answers[{{ $stt }}][{{ $question->id }}]" id="checked_answer{{ $answer->id }}" hidden data-val="{{ $answer->noi_dung }}">
                             @else
-                            <input type="radio" name="answers[{{ $stt }}][{{ $question->id }}]" value="{{ $answer->id }}" id="answer{{ $answer->id }}" onchange="get_result({{ $question }}, {{ $answer }}); rm_disabled();" onclick="checked_checkbox_input($(this), 'answers{{ $answer->id }}', {{ $question }})">
+                            <input class="form-check-input" type="radio" name="answers[{{ $stt }}][{{ $question->id }}]" value="{{ $answer->id }}" id="answer{{ $answer->id }}" data-val="{{ $answer->noi_dung }}">
                             @endif
                             <label for="answer{{ $answer->id }}">{{ $answer->ten }}: {{ $answer->noi_dung }}</label>
                         </div>
@@ -115,10 +115,14 @@
                         @endforeach
                     </div>
                     @endforeach
-                </div>
 
-                <button disabled class="btn btn-primary position-absolute btn-done" type="submit">Hoàn tất</button>
-                <a class="btn btn-primary position-absolute btn-exit" href="{{ route('surveys.index') }}">Thoát</a>
+                    <div class="text-center">
+                        <button id="back_button" type="button" class="btn btn-primary mb-2 disabled">Quay lại</button>
+                        <button id="next_button" type="button" class="btn btn-primary mb-2 disabled">Tiếp tục</button>
+                        <button id="submit_button" type="submit" class="btn btn-primary mb-2 disabled">Hoàn tất</button>
+                        <a class="btn btn-primary mb-2" href="{{ route('dashboard') }}">Thoát</a>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
@@ -129,148 +133,212 @@
     <!-- End Page-content -->
 
 
-    <footer class="footer">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-6">
-                    <script>document.write(new Date().getFullYear())</script> © Skote.
-                </div>
-                <div class="col-sm-6">
-                    <div class="text-sm-right d-none d-sm-block">
-                        Design & Develop by Themesbrand
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    
     </div>
 @endsection
 
 @push('js')
 
-    <script src="{{ asset('slick/slick.js') }}"></script>
-    <script>
-        let slick = $('.questions').slick({
-            infinite: false,
-            draggable: false,
-            prevArrow: '<button type="button" disabled class="slick-prev btn btn-primary position-absolute" onclick="disabled_btn_prev()">Quay lại</button>',
-            nextArrow: '<button type="button" disabled class="slick-next btn btn-primary position-absolute"  onclick="disabled_btn_next()">Tiếp tục</button>',
-        });
+    <script type="text/javascript">
 
-        let questions = JSON.parse(`<?= json_encode($questions) ?>`);
-        let amount_question = JSON.parse(`<?= $questions->count() ?>`);
-        let stt = 0;
-
-        let result_question_1 = '';
-        let result_question_8 = '';
-
-        function get_result(question, answer) {
-            // Câu 7
-            if ($(`input[name="answers[0][${questions[0].id}]"]:checked`).prop('checked', true) && stt == 0) {
-                result_question_1 = answer.noi_dung;
+        let total_question = JSON.parse(`<?= $questions->count() ?>`);
+        function next(step, next_step) {
+            if (next_step == 3 && step == 1) {
+                $('body').attr('data-prev', 1);
+            } else {
+                $('body').attr('data-prev', step);
             }
 
-            // Câu 8
-            if ($(`input[name="answers[7][${questions[7].id}]"]:checked`).prop('checked', true) && stt == 7) {
-                result_question_8 = answer.noi_dung;
+            var value = $('.survey_step[data-step="'+next_step+'"]').find('.form-check-input:checked').data('val')
+
+
+            if (value) {
+                $('#next_button').removeClass('disabled');
+            } else {
+                $('#next_button').addClass('disabled');
             }
+
+            $('#back_button').removeClass('disabled');
         }
 
-        function rm_disabled() {
+        function back(step, prev_step) {
 
-            if (stt == 0) {
-                $(`.slick-prev`).attr('disabled', 'disabled');
-                $(`.slick-next`).removeAttr('disabled');
+            $('body').attr('data-step', prev_step);
+
+            if (prev_step == 3) {
+
+                var value = $('.survey_step[data-step="1"]').find('.form-check-input:checked').data('val');
+                // Kiểm tra câu 2
+                if (value == 'Đang có việc làm' || value == 'Đang vừa học vừa làm') {
+                    $('body').attr('data-prev', 1);
+                }
+
+                if (value == 'Chưa có việc làm') {
+                    $('body').attr('data-prev', 2);
+                }
+            } else {
+                $('body').attr('data-prev', parseFloat(prev_step) - 1);
             }
-            else if(stt == amount_question-1) {
-                $(`.slick-next`).attr('disabled', 'disabled');
-                $(`.slick-prev`).removeAttr('disabled');
-                $(`.btn-done`).removeAttr('disabled');
+
+            var value = $('.survey_step[data-step="'+prev_step+'"]').find('.form-check-input:checked').data('val')
+
+            if (value) {
+                $('#next_button').removeClass('disabled');
+            } else {
+                $('#next_button').addClass('disabled');
             }
-            else {
-                // $(`.slick-next`).removeAttr('disabled');
-                $(`.slick-prev`).removeAttr('disabled');
-            }
+
+            $('#submit_button').addClass('disabled');
+            $('body').attr('data-next', parseFloat(prev_step) + 1);
         }
 
-        function checked_checkbox_input(obj, name_id, question) {
-            if (obj.is(':checked')) {
-                $(`#${name_id}`).prop('checked', true);
-                $(`.slick-next`).removeAttr('disabled');
-            }
-            else {
-                $(`#${name_id}`).prop('checked', false);
-            }
+        function condition(step, next_step) {
 
-            if ($(`input[name="check_answers[${stt}][${question.id}]"]:checked`).length > 0 || $(`input[name="answers[${stt}][${question.id}]"]:checked`).is(':checked')) {
-                rm_disabled();
-            }
-            else {
-                $(`.slick-next`).attr('disabled', 'disabled');
-                $(`.slick-prev`).attr('disabled', 'disabled');
-            }
-        }
+            if (step == 1) {
 
-        function disabled_btn_next() {
-            
-            // Điều kiện câu 2
-            if (stt == 0 && result_question_1 == 'Chưa có việc làm' || result_question_1 == 'Chưa có nhu cầu') {
-                // $(`.btn-done`).removeAttr('disabled');
-                $(`.slick-next`).attr('disabled', 'disabled');
-                $(`.btn-done`).removeAttr('disabled');
-            // //     // $(`.slick-prev`).removeAttr('disabled');
-            // //     // rm_disabled();
-            }
-            else {
-                // $('.questions').slick('slickGoTo', 2);
-                // slick.slick('slickGoTo', 2);
-                stt++;
-                if ($(`input[name="check_answers[${stt}][${questions[stt].id}]"]:checked`).length > 0 || $(`input[name="answers[${stt}][${questions[stt].id}]"]:checked`).is(':checked')) {
-                    $(`.slick-next`).removeAttr('disabled');
+                $('#back_button').addClass('disabled');
+
+                var value = $('.survey_step[data-step="1"]').find('.form-check-input:checked').data('val');
+                // Kiểm tra câu 2
+                if (value == 'Đang có việc làm' || value == 'Đang vừa học vừa làm') {
+                    $('body').attr('data-next', 3);
+                }
+
+                if (value == 'Chưa có việc làm') {
+                    $('body').attr('data-next', 2);
+                }
+
+                if (value == 'Đang học tiếp' || value == 'Chưa có nhu cầu') {
+                    $('#submit_button').removeClass('disabled');
+                    $('#next_button').addClass('disabled');
+                } else {
+                    $('#submit_button').addClass('disabled');
+                }
+
+            } 
+            if (step == 8) {
+                var value = $('.survey_step[data-step="8"]').find('.form-check-input:checked').data('val');
+                // Kiểm tra câu 8
+                if (value == 'Đúng ngành đào tạo' || value == 'Có liên quan đến ngành đào tạo') {
+                    $('body').attr('data-next', 10);
+
                 }
                 else {
-                    $(`.slick-next`).attr('disabled', 'disabled');
+                    $('body').attr('data-next', 9);
+                }
+            } else if (step == total_question || step == 9) {
+                $('#submit_button').removeClass('disabled');
+                $('#next_button').addClass('disabled');
+            }
+        }
+
+        jQuery(document).ready(function() {
+
+            $('.form-check-input').change(function() {
+
+                var step = $('body').attr('data-step');
+                var next_step = $('body').attr('data-next');
+
+                condition(step, next_step);
+
+                var value = $('.survey_step[data-step="'+step+'"]').find('.form-check-input:checked').data('val')
+                
+                if (value) {
+                    if (value == 'Đang học tiếp' || value == 'Chưa có nhu cầu') {
+                        $('#next_button').addClass('disabled');
+                    } else {
+                        $('#next_button').removeClass('disabled');
+                    }
+                } else {
+                    $('#next_button').addClass('disabled');
                 }
 
-                $(`.slick-prev`).removeAttr('disabled');
-                rm_disabled();
-            }
+                if (!$('#submit_button').hasClass('disabled')) {
+                    $('#next_button').addClass('disabled');
+                }
 
-        }
+            });
 
-        function disabled_btn_prev() {
-            stt--;
-            rm_disabled();
-            $(`.slick-next`).removeAttr('disabled');
-        }
+            $('#next_button').click(function() {
+
+                if (!$(this).hasClass('disabled')) {
+
+                    var step = $('body').attr('data-step');
+                    var next_step = $('body').attr('data-next');
+
+                    condition(step, next_step);
+
+                    if (!next_step) {
+                        next_step = parseFloat(step) + 1;
+                    }
+
+                    if (next_step == 0) {
+                        next_step = parseFloat(step) + 1;
+                        $('#submit_button').removeClass('disabled');
+                        $('#next_button').addClass('disabled');
+                    } else {
+                        $('body').attr('data-next', parseFloat(next_step) + 1);
+                    }
+
+                    $('body').attr('data-step', next_step);
+
+                    next(step, next_step);
+
+                    $('.survey_step').hide();
+                    $('.survey_step[data-step="'+next_step+'"]').show();
+
+                    if (!$('#submit_button').hasClass('disabled')) {
+                        $('#next_button').addClass('disabled');
+                    }
+
+                }
+
+                return false;
+
+            });
+
+            $('#back_button').click(function() {
+
+                if (!$(this).hasClass('disabled')) {
+
+                    var step = $('body').attr('data-step');
+                    var prev_step = $('body').attr('data-prev');
+
+                    back(step, prev_step);
+
+                    $('.survey_step').hide();
+                    $('.survey_step[data-step="'+prev_step+'"]').show();
+
+                    condition(prev_step, step);
+                }
+
+                return false;
+
+            });
+
+            $('#submit_button').click(function() {
+                if ($(this).hasClass('disabled')) {
+                    return false;
+                }
+            });
+
+        });
     </script>
 @endpush
 
 @push('css')
     <link rel="stylesheet" href="{{ asset('slick/slick.css') }}">
     <style>
-        .slick-prev {
-            bottom: 0;
-            left: 0;
+        .survey_step {
+            display: none;
         }
 
-        .slick-next {
-            bottom: 0;
-            left: 93px;
+        .survey_step[data-step="1"] {
+            display: block;
         }
 
-        .btn-done {
-            bottom: 0;
-            left: 184px;
-        }
-
-        .btn-exit {
-            bottom: 0;
-            left: 280px;
-        }
-
-        .questions {
-            padding-bottom: 50px;
+        label {
+            font-size: 15px;
         }
     </style>
 @endpush

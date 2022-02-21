@@ -24,8 +24,8 @@ class StoreQuestionRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:10', 
-            'content' => 'required|max:255', 
+            'name_question' => 'required|max:10', 
+            'content_question' => 'required|max:255', 
             'type' => 'required', 
         ];
     }
@@ -34,10 +34,10 @@ class StoreQuestionRequest extends FormRequest
     {
         return [
             'type.required' => 'Cách chọn đáp án là trường bắt buộc.', 
-            'name.required' => 'Tên câu hỏi là trường bắt buộc.', 
-            'name.max' => 'Tên câu hỏi không được dài quá :max ký tự.', 
-            'content.required' => 'Nội dung là trường bắt buộc.', 
-            'content.max' => 'Nội dung không được dài quá :max ký tự.', 
+            'name_question.required' => 'Tên câu hỏi là trường bắt buộc.', 
+            'name_question.max' => 'Tên câu hỏi không được dài quá :max ký tự.', 
+            'content_question.required' => 'Nội dung là trường bắt buộc.', 
+            'content_question.max' => 'Nội dung không được dài quá :max ký tự.', 
         ];
     }
 }

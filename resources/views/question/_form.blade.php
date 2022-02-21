@@ -8,17 +8,17 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="form-group">
-                    <label for="name">Tên câu hỏi <span class="text-danger">*</span></label>
-                    <input id="name" name="name" type="text" class="form-control" placeholder="VD: Câu 1" value="{{ old('name', $data_edit->ten ?? '') }}">
-                    {!! $errors->first('name', '<span class="error">:message</span>') !!}
+                    <label for="name_question">Tên câu hỏi <span class="text-danger">*</span></label>
+                    <input id="name_question" name="name_question" type="text" class="form-control" placeholder="VD: Câu 1" value="{{ old('name_question', $data_edit->ten ?? '') }}">
+                    {!! $errors->first('name_question', '<span class="error">:message</span>') !!}
                 </div>
             </div>
 
             <div class="col-sm-12">
                 <div class="form-group">
-                    <label for="content">Nội dung <span class="text-danger">*</span></label>
-                    <input id="content" name="content" type="text" class="form-control" placeholder="Nội dung" value="{{ old('content', $data_edit->noi_dung ?? '') }}">
-                    {!! $errors->first('content', '<span class="error">:message</span>') !!}
+                    <label for="content_question">Nội dung <span class="text-danger">*</span></label>
+                    <input id="content_question" name="content_question" type="text" class="form-control" placeholder="Nội dung" value="{{ old('content_question', $data_edit->noi_dung ?? '') }}">
+                    {!! $errors->first('content_question', '<span class="error">:message</span>') !!}
                 </div>
             </div>
 

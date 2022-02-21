@@ -54,16 +54,16 @@ class QuestionController extends Controller
             
             $question = Question::create([
                 'phieu_khao_sat_id' => 1,
-                'ten' => $request->name,
-                'noi_dung' => $request->content,
+                'ten' => $request->name_question,
+                'noi_dung' => $request->content_question,
                 'cach_chon_dap_an' => $request->type,
             ]);
             
             foreach ($request->answers as $value) {
                 Answer::create([
                     'cau_hoi_id' => $question->id,
-                    'ten' => $request->name,
-                    'noi_dung' => $request->content,
+                    'ten' => $value['name'],
+                    'noi_dung' => $value['content'],
                 ]);
             }
             DB::commit();
@@ -114,8 +114,8 @@ class QuestionController extends Controller
 
             $question->answers()->delete();
             $question->update([
-                'ten' => $request->name,
-                'noi_dung' => $request->content,
+                'ten' => $request->name_question,
+                'noi_dung' => $request->content_question,
                 'cach_chon_dap_an' => $request->type,
             ]);
 

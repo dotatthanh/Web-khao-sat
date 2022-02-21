@@ -25,7 +25,7 @@
         <!-- App Css-->
         <link href="{{ asset('css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css">
     </head>
-    <body data-sidebar="dark">
+    <body data-topbar="dark" data-step="1">
         <!-- Begin page -->
         <div id="layout-wrapper">
 
@@ -45,10 +45,10 @@
 
                             <a href="{{ route('dashboard') }}" class="logo logo-light">
                                 <span class="logo-sm">
-                                    <img src="{{ asset('images\logo-light.png') }}" alt="" height="22">
+                                    <img src="{{ asset('images\logo-light.svg') }}" alt="" height="22">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="{{ asset('images\logo-light.png') }}" alt="" height="28">
+                                    <img src="{{ asset('images\logo-light.svg') }}" alt="" height="30">
                                 </span>
                             </a>
                         </div>

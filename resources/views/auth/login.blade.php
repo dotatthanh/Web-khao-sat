@@ -74,7 +74,7 @@
                                     <div class="col-7">
                                         <div class="text-primary p-4">
                                             <h5 class="text-primary">Chào mừng trở lại !</h5>
-                                            <p>Đăng nhập để tiếp tục Stoke.</p>
+                                            <p>Đăng nhập để tiếp tục.</p>
                                         </div>
                                     </div>
                                     <div class="col-5 align-self-end">
@@ -159,13 +159,6 @@
                                     </form>
                                 </div>
 
-                            </div>
-                        </div>
-                        <div class="mt-5 text-center">
-
-                            <div>
-                                {{-- <p>Bạn chưa có tài khoản ? <a href="{{ route('register') }}" class="font-weight-medium text-primary"> Đăng ký ngay </a> </p> --}}
-                                <p>© 2020 Skote. Được phát hành bởi <i class="mdi mdi-heart text-danger"></i> Themesbrand</p>
                             </div>
                         </div>
 

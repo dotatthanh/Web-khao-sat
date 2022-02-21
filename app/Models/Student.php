@@ -19,7 +19,6 @@ class Student extends Model
         'gioi_tinh',
         'so_dien_thoai',
         'email',
-        // 'result_date',
     ];
 
     public function class()
@@ -27,18 +26,8 @@ class Student extends Model
     	return $this->belongsTo(Classes::class, 'lop_id');
     }
 
-    // public function chooseAnswer()
-    // {
-    //     return $this->hasOne(ChooseAnswer::class, 'cuu_sinh_vien_id');
-    // }
-
     public function result()
     {
         return $this->hasOne(Result::class, 'cuu_sinh_vien_id');
     }
-
-    // public function setResultDateAttribute()
-    // {
-    //     return $this->result()->where('ngay_khao_sat', data('Y-m-d'))->count();
-    // }
 }

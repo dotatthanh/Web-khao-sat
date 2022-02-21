@@ -46,7 +46,7 @@
 
                     <li>
                         <a href="javascript: void(0);" class="waves-effect">
-                            <i class="bx bx-cog"></i><span class="badge badge-pill badge-info float-right">02</span>
+                            <i class="bx bx-cog"></i><span class="badge badge-pill badge-info float-right">03</span>
                             <span>Thống kê</span>
                         </a>
                         <ul class="sub-menu" aria-expanded="true">

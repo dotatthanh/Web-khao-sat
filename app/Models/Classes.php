@@ -37,18 +37,4 @@ class Classes extends Model
 
         return $result;
     }
-
-    // public function getStatisticClassAttribute()
-    // {
-    //     $result = $this->students()
-    //         // ->whereHas('chooseAnswer', function (Builder $query) {
-    //         //     // dd($query->count());
-    //         //     // $query->where('ngay_khao_sat', date('Y-m-d'));
-    //         // })
-    //         ->get();
-
-    //     // dd($result);
-
-    //     return $result;
-    // }
 }
