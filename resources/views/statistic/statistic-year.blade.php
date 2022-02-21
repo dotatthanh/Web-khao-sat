@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title') Thống kê trong ngày @endsection
+@section('title') Thống kê trong năm @endsection
 
 @section('content')
     <div class="main-content">
@@ -12,13 +12,13 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-flex align-items-center justify-content-between">
-                            <h4 class="mb-0 font-size-18">Thống kê trong ngày</h4>
+                            <h4 class="mb-0 font-size-18">Thống kê trong năm</h4>
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
                                     <li class="breadcrumb-item"><a href="javascript: void(0);" title="Quản lý" data-toggle="tooltip" data-placement="top">Quản lý</a></li>
                                     <li class="breadcrumb-item"><a href="javascript: void(0);" title="Thống kê" data-toggle="tooltip" data-placement="top">Thống kê</a></li>
-                                    <li class="breadcrumb-item active">Thống kê trong ngày</li>
+                                    <li class="breadcrumb-item active">Thống kê trong năm</li>
                                 </ol>
                             </div>
 

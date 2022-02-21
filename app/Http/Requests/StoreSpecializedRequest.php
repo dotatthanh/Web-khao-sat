@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreSpecializedRequest extends FormRequest
 {
@@ -24,7 +25,10 @@ class StoreSpecializedRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:100', 
+            'ten_nganh' => [
+                'required', 'max:100',
+                Rule::unique('nganh')->ignore($this->specialized),
+            ],
             'code' => 'required|max:20', 
         ];
     }
@@ -32,8 +36,9 @@ class StoreSpecializedRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'Tên chuyên ngành là trường bắt buộc.', 
-            'name.max' => 'Tên chuyên ngành không được dài quá :max ký tự.', 
+            'ten_nganh.required' => 'Tên chuyên ngành là trường bắt buộc.', 
+            'ten_nganh.max' => 'Tên chuyên ngành không được dài quá :max ký tự.', 
+            'ten_nganh.unique' => 'Chuyên ngành đã tồn tại.', 
             'code.required' => 'Mã chuyên ngành là trường bắt buộc.', 
             'code.max' => 'Mã chuyên ngành không được dài quá :max ký tự.', 
         ];

@@ -50,7 +50,7 @@
                             <span>Thống kê</span>
                         </a>
                         <ul class="sub-menu" aria-expanded="true">
-                            <li><a href="{{ route('statistic.date') }}">Thống kê trong ngày</a></li>
+                            <li><a href="{{ route('statistic.year') }}">Thống kê trong năm</a></li>
                             <li><a href="{{ route('statistic.specialized') }}">Thống kê theo ngành</a></li>
                             <li><a href="{{ route('statistic.class') }}">Thống kê theo lớp</a></li>
                         </ul>

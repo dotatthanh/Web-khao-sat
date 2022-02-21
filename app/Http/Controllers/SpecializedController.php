@@ -53,7 +53,7 @@ class SpecializedController extends Controller
             
             $specialized = Specialized::create([
                 'ma_nganh' => $request->code,
-                'ten_nganh' => $request->name,
+                'ten_nganh' => $request->ten_nganh,
             ]);
 
             DB::commit();
@@ -103,7 +103,7 @@ class SpecializedController extends Controller
             DB::beginTransaction();
 
             $specialized->update([
-                'ten_nganh' => $request->name,
+                'ten_nganh' => $request->ten_nganh,
                 'ma_nganh' => $request->code,
             ]);
             

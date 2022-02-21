@@ -32,7 +32,7 @@ class Classes extends Model
     public function getStatisticDateAttribute()
     {
         $result = $this->students()->whereHas('result', function (Builder $query) {
-            $query->where('ngay_khao_sat', date('Y-m-d'));
+            $query->whereYear('ngay_khao_sat', date('Y'));
         })->count();
 
         return $result;

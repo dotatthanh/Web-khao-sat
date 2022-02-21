@@ -31,6 +31,24 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
+                                <form method="GET" action="{{ route('statistic.specialized') }}">
+                                    <div class="row mb-2">
+                                        <div class="col-sm-5">
+                                            <select class="form-control select2" name="search">
+                                                <option value="">Chọn nội dung phương án trả lời</option>
+                                                @foreach ($answers as $answer)
+                                                    <option value="{{ $answer->id }}">{{ $answer->noi_dung }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <button type="submit" class="btn btn-success waves-effect waves-light">
+                                                <i class="bx bx-search-alt search-icon font-size-16 align-middle mr-2"></i> Tìm kiếm
+                                            </button>
+                                        </div>
+                                        
+                                    </div>
+                                </form>
 
                                 <div class="table-responsive">
                                     <table class="table table-centered table-nowrap">

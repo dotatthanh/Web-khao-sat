@@ -49,28 +49,15 @@ class SurveyController extends Controller
      */
     public function store(SurveyStoreRequest $request)
     {
-        // dd($request->answers);
-
-
         $answers = $request->answers;
         $question_1 = Question::first();
         $question_8 = Question::all()[7];
         $answer_id_1 = $answers[0][$question_1->id];
         $answer_1 = Answer::findOrFail($answer_id_1);
-        $answer_id_8 = $answers[7][$question_8->id];
-        $answer_8 = Answer::findOrFail($answer_id_8);
-        try {
-            DB::beginTransaction();
-
-            // Check câu 2
-            if ($answer_1->noi_dung == 'Đang có việc làm' || $answer_1->noi_dung == 'Đang vừa học vừa làm') {
-                // di cau 3 => bỏ co cau 2
-                unset($answers[1]);
-            }
-            if ($answer_1->noi_dung == 'Chưa có nhu cầu' || $answer_1->noi_dung == 'Đang học tiếp'){
-                // hoan tat
-                $answers = $answers[0];
-            }
+        if (count($answers) >= 8) {
+            $answer_id_8 = $answers[7][$question_8->id];
+            $answer_8 = Answer::findOrFail($answer_id_8);
+            
             // Check câu 8
             if ($answer_8->noi_dung == 'Không liên quan đến ngành đào tạo'){
                 // chỉ đến câu 9
@@ -84,6 +71,21 @@ class SurveyController extends Controller
                 // bỏ câu 9
                 unset($answers[8]);
             }
+        }
+
+        // Check câu 2
+        if ($answer_1->noi_dung == 'Đang có việc làm' || $answer_1->noi_dung == 'Đang vừa học vừa làm') {
+            // di cau 3 => bỏ co cau 2
+            unset($answers[1]);
+        }
+        if ($answer_1->noi_dung == 'Chưa có nhu cầu' || $answer_1->noi_dung == 'Đang học tiếp'){
+            // hoan tat
+            $answers = $answers[0];
+        }
+
+        try {
+            DB::beginTransaction();
+
 
             $student = Student::create([
                 'ma_sv' => $request->code_student,
@@ -104,24 +106,36 @@ class SurveyController extends Controller
 
             $specialized_id = Classes::findOrFail($request->code_class)->nganh_id;
             foreach ($answers as $question) {
-                // Check checkbox
-                if (is_array($question[key($question)])) {
-                    foreach($question[key($question)] as $answer) {
+                if (is_array($question)) {
+                    // Check checkbox
+                    if (is_array($question[key($question)])) {
+                        foreach($question[key($question)] as $answer) {
+                            $choose_answer = ChooseAnswer::create([
+                                'ket_qua_id' => $result->id,
+                                'cau_hoi_id' => key($question),
+                                'phuong_an_tra_loi_id' => $answer,
+                                'lop_id' => $request->code_class,
+                                'nganh_id' => $specialized_id,
+                            ]);
+                        }
+                    }
+                    // radio
+                    else {
                         $choose_answer = ChooseAnswer::create([
                             'ket_qua_id' => $result->id,
                             'cau_hoi_id' => key($question),
-                            'phuong_an_tra_loi_id' => $answer,
+                            'phuong_an_tra_loi_id' => $question[key($question)],
                             'lop_id' => $request->code_class,
                             'nganh_id' => $specialized_id,
                         ]);
                     }
                 }
-                // radio
+                // check nếu trường hợp chỉ có chọn câu 1
                 else {
                     $choose_answer = ChooseAnswer::create([
                         'ket_qua_id' => $result->id,
-                        'cau_hoi_id' => key($question),
-                        'phuong_an_tra_loi_id' => $question[key($question)],
+                        'cau_hoi_id' => $question_1->id,
+                        'phuong_an_tra_loi_id' => $question,
                         'lop_id' => $request->code_class,
                         'nganh_id' => $specialized_id,
                     ]);

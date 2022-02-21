@@ -32,7 +32,7 @@ Route::get('/', function () {
 Route::middleware(['auth'])->group(function () {
 	Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 	Route::get('/statistic/statistic-class', [StatisticController::class, 'statisticClass'])->name('statistic.class');
-	Route::get('/statistic/statistic-date', [StatisticController::class, 'statisticDate'])->name('statistic.date');
+	Route::get('/statistic/statistic-year', [StatisticController::class, 'statisticYear'])->name('statistic.year');
 	Route::get('/statistic/statistic-specialized', [StatisticController::class, 'statisticSpecialized'])->name('statistic.specialized');
 	Route::resource('specialized', SpecializedController::class);
 	Route::resource('surveys', SurveyController::class);

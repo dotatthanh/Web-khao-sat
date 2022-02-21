@@ -16,9 +16,9 @@
 
             <div class="col-sm-12">
                 <div class="form-group">
-                    <label for="name">Tên chuyên ngành <span class="text-danger">*</span></label>
-                    <input id="name" name="name" type="text" class="form-control" placeholder="Tên chuyên ngành" value="{{ old('name', $data_edit->ten_nganh ?? '') }}">
-                    {!! $errors->first('name', '<span class="error">:message</span>') !!}
+                    <label for="ten_nganh">Tên chuyên ngành <span class="text-danger">*</span></label>
+                    <input id="ten_nganh" name="ten_nganh" type="text" class="form-control" placeholder="Tên chuyên ngành" value="{{ old('ten_nganh', $data_edit->ten_nganh ?? '') }}">
+                    {!! $errors->first('ten_nganh', '<span class="error">:message</span>') !!}
                 </div>
             </div>
         </div>

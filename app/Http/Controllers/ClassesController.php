@@ -61,7 +61,7 @@ class ClassesController extends Controller
             $class = Classes::create([
                 'nganh_id' => $request->specialized_id,
                 'ma_lop' => $request->code,
-                'ten_lop' => $request->name,
+                'ten_lop' => $request->ten_lop,
             ]);
 
             DB::commit();
@@ -115,7 +115,7 @@ class ClassesController extends Controller
 
             $classes->update([
                 'nganh_id' => $request->specialized_id,
-                'ten_lop' => $request->name,
+                'ten_lop' => $request->ten_lop,
                 'ma_lop' => $request->code,
             ]);
 

@@ -193,9 +193,7 @@
         }
 
         function condition(step, next_step) {
-
             if (step == 1) {
-
                 $('#back_button').addClass('disabled');
 
                 var value = $('.survey_step[data-step="1"]').find('.form-check-input:checked').data('val');
@@ -216,6 +214,10 @@
                 }
 
             } 
+            if (step == 2) {
+                $('#submit_button').removeClass('disabled');
+                $('#next_button').addClass('disabled');
+            }
             if (step == 8) {
                 var value = $('.survey_step[data-step="8"]').find('.form-check-input:checked').data('val');
                 // Kiểm tra câu 8
