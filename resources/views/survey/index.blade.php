@@ -169,7 +169,7 @@
 
                 var value = $('.survey_step[data-step="1"]').find('.form-check-input:checked').data('val');
                 // Kiểm tra câu 2
-                if (value == 'Đang có việc làm' || value == 'Đang vừa học vừa làm') {
+                if (value == 'Đang có việc làm' || value == 'Đang vừa làm vừa học') {
                     $('body').attr('data-prev', 1);
                 }
 
@@ -198,7 +198,7 @@
 
                 var value = $('.survey_step[data-step="1"]').find('.form-check-input:checked').data('val');
                 // Kiểm tra câu 2
-                if (value == 'Đang có việc làm' || value == 'Đang vừa học vừa làm') {
+                if (value == 'Đang có việc làm' || value == 'Đang vừa làm vừa học') {
                     $('body').attr('data-next', 3);
                 }
 
