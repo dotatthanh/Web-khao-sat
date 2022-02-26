@@ -23,17 +23,9 @@ class TaiKhoanSeeder extends Seeder
             ],
         ];
 
-        $khao_sat = [
-            [
-                'ten' => 'khảo sát',
-                'email' => 'khaosat@gmail.com',
-                'mat_khau' => bcrypt('123123123'),
-                'admin' => 0,
-            ],
-        ];
+       
 
         
         DB::table('tai_khoan')->insert($admin);
-        DB::table('tai_khoan')->insert($khao_sat);
     }
 }

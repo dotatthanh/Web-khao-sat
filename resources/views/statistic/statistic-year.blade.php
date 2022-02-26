@@ -39,6 +39,8 @@
                                                 <th style="width: 70px;" class="text-center">STT</th>
                                                 <th>Mã lớp</th>
                                                 <th>Số lượt khảo sát</th>
+                                                <th>Số người đang có việc làm</th>
+                                                <th>Số người chưa có việc làm</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -47,7 +49,9 @@
                                                 <tr>
                                                     <td class="text-center">{{ $stt++ }}</td>
                                                     <td>{{ $class->ma_lop }}</td>
-                                                    <td>{{ $class->statistic_date }}</td>
+                                                    <td>{{ $class->total }}</td>
+                                                    <td>{{ $class->dang_lam_viec }}</td>
+                                                    <td>{{ $class->chua_co_viec }}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>

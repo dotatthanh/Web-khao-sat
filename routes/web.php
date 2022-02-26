@@ -21,34 +21,38 @@ use App\Http\Controllers\StatisticController;
 */
 
 Route::get('/', function () {
-    return redirect('login');
+    return redirect()->route('surveys.index');
 });
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');
-
-
-Route::middleware(['auth'])->group(function () {
-	Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-	Route::get('/statistic/statistic-class', [StatisticController::class, 'statisticClass'])->name('statistic.class');
-	Route::get('/statistic/statistic-year', [StatisticController::class, 'statisticYear'])->name('statistic.year');
-	Route::get('/statistic/statistic-specialized', [StatisticController::class, 'statisticSpecialized'])->name('statistic.specialized');
-	Route::resource('specialized', SpecializedController::class);
-	Route::resource('surveys', SurveyController::class);
-
-	Route::resource('classes', ClassesController::class)->only([
-	    'index', 'create', 'store', 'destroy'
-	]);;
-	Route::get('/classes/{classes}/edit', [ClassesController::class, 'edit'])->name('classes.edit');
-	Route::put('/classes/{classes}', [ClassesController::class, 'update'])->name('classes.update');
-	Route::delete('/classes/{classes}/delete', [ClassesController::class, 'destroy'])->name('classes.destroy');
-
-	Route::resource('questions', QuestionController::class);
-
-	Route::resource('users', UserController::class);
-	Route::get('/users/view-change-password/{user}', [UserController::class, 'viewChangePassword'])->name('users.view-change-password');
-	Route::post('/users/change-password/{user}', [UserController::class, 'changePassword'])->name('users.change-password');
-
+Route::get('/admin', function () {
+    return redirect()->route('login');
 });
-require __DIR__.'/auth.php';
+
+Route::prefix('admin')->group(function () {
+	Route::middleware(['auth'])->group(function () {
+		Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+		Route::get('/statistic/statistic-class', [StatisticController::class, 'statisticClass'])->name('statistic.class');
+		Route::get('/statistic/statistic-year', [StatisticController::class, 'statisticYear'])->name('statistic.year');
+		Route::get('/statistic/statistic-specialized', [StatisticController::class, 'statisticSpecialized'])->name('statistic.specialized');
+		Route::get('/statistic/statistic-chart', [StatisticController::class, 'statisticChart'])->name('statistic.chart');
+		Route::resource('specialized', SpecializedController::class);
+
+		Route::resource('classes', ClassesController::class)->only([
+			'index', 'create', 'store', 'destroy'
+		]);;
+		Route::get('/classes/{classes}/edit', [ClassesController::class, 'edit'])->name('classes.edit');
+		Route::put('/classes/{classes}', [ClassesController::class, 'update'])->name('classes.update');
+		Route::delete('/classes/{classes}/delete', [ClassesController::class, 'destroy'])->name('classes.destroy');
+
+		Route::resource('questions', QuestionController::class);
+
+		Route::resource('users', UserController::class);
+		Route::get('/users/view-change-password/{user}', [UserController::class, 'viewChangePassword'])->name('users.view-change-password');
+		Route::post('/users/change-password/{user}', [UserController::class, 'changePassword'])->name('users.change-password');
+
+	});
+	require __DIR__.'/auth.php';
+});
+
+
+		Route::resource('surveys', SurveyController::class);

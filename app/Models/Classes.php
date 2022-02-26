@@ -29,14 +29,32 @@ class Classes extends Model
         return $this->hasMany(Student::class, 'lop_id');
     }
 
-    public function getStatisticDateAttribute()
-    {
-        $result = $this->students()->whereHas('result', function (Builder $query) {
-            $query->whereYear('ngay_khao_sat', date('Y'));
-        })->count();
+    // public function getNumberSurveyYearAttribute()
+    // {
+    //     $result = $this->students()->whereHas('result', function (Builder $query) {
+    //         $query->whereYear('ngay_khao_sat', date('Y'));
+    //     })->count();
 
-        return $result;
-    }
+    //     return $result;
+    // }
+
+    // public function getNumberPeopleWithoutJobsAttribute()
+    // {
+    //     $result = $this->students()->whereHas('result', function (Builder $query) {
+    //         $query->whereYear('ngay_khao_sat', date('Y'))->where('ket_qua', 'Chưa có việc làm');
+    //     })->count();
+
+    //     return $result;
+    // }
+
+    // public function getNumberPeopleWithJobsAttribute()
+    // {
+    //     $result = $this->students()->whereHas('result', function (Builder $query) {
+    //         $query->whereYear('ngay_khao_sat', date('Y'))->where('ket_qua', 'Đang có việc làm');
+    //     })->count();
+
+    //     return $result;
+    // }
 
     public function results()
     {

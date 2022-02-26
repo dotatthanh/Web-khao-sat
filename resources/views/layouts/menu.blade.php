@@ -13,7 +13,7 @@
                     </a>
                 </li>
 
-                @if (auth()->user()->admin == 1)
+                {{-- @if (auth()->user()->admin == 1) --}}
                     <li class="menu-title">Quản lý</li>
                     
                     <li>
@@ -46,16 +46,17 @@
 
                     <li>
                         <a href="javascript: void(0);" class="waves-effect">
-                            <i class="bx bx-cog"></i><span class="badge badge-pill badge-info float-right">03</span>
+                            <i class="bx bx-cog"></i><span class="badge badge-pill badge-info float-right">04</span>
                             <span>Thống kê</span>
                         </a>
                         <ul class="sub-menu" aria-expanded="true">
                             <li><a href="{{ route('statistic.year') }}">Thống kê trong năm</a></li>
                             <li><a href="{{ route('statistic.specialized') }}">Thống kê theo ngành</a></li>
                             <li><a href="{{ route('statistic.class') }}">Thống kê theo lớp</a></li>
+                            <li><a href="{{ route('statistic.chart') }}">Thống kê biểu đồ</a></li>
                         </ul>
                     </li>
-                @else
+                {{-- @else
                     <li class="menu-title">Khảo sát</li>
 
                     <li>
@@ -64,7 +65,7 @@
                             <span>Khảo sát</span>
                         </a>
                     </li>
-                @endif
+                @endif --}}
             </ul>
         </div>
         <!-- Sidebar -->

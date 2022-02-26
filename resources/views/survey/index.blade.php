@@ -1,346 +1,481 @@
-@extends('layouts.default')
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-@section('title') Khảo sát @endsection
+        <title>Khảo sát</title>
 
-@section('content')
-    <div class="main-content">
+        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description">
+        <meta content="Themesbrand" name="author">
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}">
 
-        <div class="page-content">
-            <div class="container-fluid">
+        @yield('css')
+        @stack('css')
 
-                <!-- start page title -->
-                <div class="row">
-                    <div class="col-12">
-                        <div class="page-title-box d-flex align-items-center justify-content-between">
-                            <h4 class="mb-0 font-size-18">Khảo sát</h4>
+        <!-- Toastr Css -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('libs\toastr\build\toastr.min.css') }}">
 
-                            <div class="page-title-right">
-                                <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);" title="Quản lý" data-toggle="tooltip" data-placement="top">Quản lý</a></li>
-                                    <li class="breadcrumb-item active">Khảo sát</li>
-                                </ol>
-                            </div>
+        <!-- Bootstrap Css -->
+        <link href="{{ asset('css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css">
+        <!-- Icons Css -->
+        <link href="{{ asset('css/icons.min.css') }}" rel="stylesheet" type="text/css">
+        <!-- App Css-->
+        <link href="{{ asset('css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css">
+    </head>
+    <body data-topbar="dark" data-step="1">
+        <!-- Begin page -->
+        <div id="layout-wrapper">
 
+            <header id="page-topbar">
+                <div class="navbar-header">
+                    <div class="d-flex">
+                        <!-- LOGO -->
+                        <div class="navbar-brand-box">
+                            <a href="{{ route('dashboard') }}" class="logo logo-dark">
+                                <span class="logo-sm">
+                                    <img src="{{ asset('images\logo.svg') }}" alt="" height="22">
+                                </span>
+                                <span class="logo-lg">
+                                    <img src="{{ asset('images\logo-dark.png') }}" alt="" height="17">
+                                </span>
+                            </a>
+
+                            <a href="{{ route('dashboard') }}" class="logo logo-light">
+                                <span class="logo-sm">
+                                    <img src="{{ asset('images\logo.jpg') }}" alt="" height="22">
+                                </span>
+                                <span class="logo-lg">
+                                    <img src="{{ asset('images\logo.jpg') }}" alt="" height="40">
+                                </span>
+                            </a>
                         </div>
                     </div>
                 </div>
-                <!-- end page title -->
+            </header> 
 
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h1 class="font-weight-bold text-center text-success">NỘI DUNG KHẢO SÁT</h2>
-                                <p class="text-center text-success">Tình hình việc làm của sinh viên Trường Đại học Trà Vinh sau khi tốt nghiệp</p>
-                                <p>Anh/Chị vui lòng dành ít thời gian tham gia phiếu khảo sát này. Thông tin trả lời của Anh/Chị chỉ được sử dụng cho mục đích cải tiến hoạt động Dạy - Học và nâng cao cơ hội việc làm cho sinh viên sau tốt nghiệp.</p>
+            <!-- ========== Left Sidebar Start ========== -->
+            {{-- @include('layouts.menu') --}}
+            <!-- Left Sidebar End -->
 
-                                <p class="text-danger">Ngày trả lời khảo sát: {{ date('d-m-Y') }}</p>
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="">
 
-                                <form action="{{ route('surveys.store') }}" class="position-relative" method="POST">
-                                    @csrf
-                                    <h2 class="text-success font-weight-bold">A. THÔNG TIN CÁ NHÂN</h2>
+                <div class="page-content">
+                    <div class="container-fluid">
 
-                                    <div class="form-group row">
-                                        <label for="name" class="col-sm-2 col-form-label">Họ và tên</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="name" id="name" placeholder="Họ và tên">
-                                      </div>
-                                  </div>
-                                  <div class="form-group row">
-                                    <label for="code_student" class="col-sm-2 col-form-label">Mã sinh viên</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="code_student" id="code_student" placeholder="Mã sinh viên">
-                                  </div>
-                              </div>
-                              <div class="form-group row">
-                                <label for="gender" class="col-sm-2 col-form-label">Giới tính</label>
-                                <div class="col-sm-10">
-                                  <select name="gender" id="gender" class="form-control">
-                                        <option value="">Chọn giới tính</option>
-                                        <option value="Nam">Nam</option>
-                                        <option value="Nữ">Nữ</option>
-                                  </select>
-                              </div>
-                          </div>
-                          <div class="form-group row">
-                            <label for="code_class" class="col-sm-2 col-form-label">Mã lớp <span class="text-danger">*</span></label>
-                            <div class="col-sm-10">
-                                <select name="code_class" id="code_class" class="form-control">
-                                    <option value="">Chọn mã lớp</option>
-                                    @foreach ($classes as $class)
-                                    <option value="{{ $class->id }}">{{ $class->ma_lop }}</option>
-                                    @endforeach
-                                </select>
-                                {!! $errors->first('code_class', '<span class="error">:message</span>') !!}
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box d-flex align-items-center justify-content-between">
+                                    <h4 class="mb-0 font-size-18">Khảo sát việc làm Trường Đại học Trà Vinh</h4>
+
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);" title="Quản lý" data-toggle="tooltip" data-placement="top">Quản lý</a></li>
+                                            <li class="breadcrumb-item active">Khảo sát</li>
+                                        </ol>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="phone" class="col-sm-2 col-form-label">Số điện thoại</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="phone" id="phone" placeholder="Điện thoại">
-                              {!! $errors->first('phone', '<span class="error">:message</span>') !!}
-                          </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="email" class="col-sm-2 col-form-label">Email</label>
-                        <div class="col-sm-10">
-                            <input type="email" class="form-control" name="email" id="email" placeholder="Email">
-                      </div>
-                  </div>
+                        <!-- end page title -->
 
-                  <h2 class="text-success font-weight-bold">B. THÔNG TIN VỀ TÌNH HÌNH VIỆC LÀM</h2>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h1 class="font-weight-bold text-center text-success">NỘI DUNG KHẢO SÁT</h2>
+                                            <p class="text-center text-success">Tình hình việc làm của sinh viên Trường Đại học Trà Vinh sau khi tốt nghiệp</p>
+                                            <p>Anh/Chị vui lòng dành ít thời gian tham gia phiếu khảo sát này. Thông tin trả lời của Anh/Chị chỉ được sử dụng cho mục đích cải tiến hoạt động Dạy - Học và nâng cao cơ hội việc làm cho sinh viên sau tốt nghiệp.</p>
 
-                  @php
-                  $stt = -1;
-                  @endphp
-                  <div class="questions pl-3 position-relative">
-                    @foreach ($questions as $question)
-                    @php
-                    $stt++;
-                    @endphp
-                    <div class="question survey_step" id="answers{{ $stt }}" data-step="{{ $stt+1 }}">
-                        <h4 class="text-danger">{{ $question->ten }}: {{ $question->noi_dung }}</h4>
-                        @foreach ($question->answers as $answer)
-                        <div class="pl-3">
-                            @if ($question->cach_chon_dap_an == 1)
-                            <input class="form-check-input" type="checkbox" name="answers[{{ $stt }}][{{ $question->id }}][{{ $answer->id }}]" value="{{ $answer->id }}" id="answer{{ $answer->id }}" data-val="{{ $answer->noi_dung }}">
+                                            <p class="text-danger">Ngày trả lời khảo sát: {{ date('d-m-Y') }}</p>
 
-                            <input class="form-check-input" type="checkbox" name="check_answers[{{ $stt }}][{{ $question->id }}]" id="checked_answer{{ $answer->id }}" hidden data-val="{{ $answer->noi_dung }}">
-                            @else
-                            <input class="form-check-input" type="radio" name="answers[{{ $stt }}][{{ $question->id }}]" value="{{ $answer->id }}" id="answer{{ $answer->id }}" data-val="{{ $answer->noi_dung }}">
-                            @endif
-                            <label for="answer{{ $answer->id }}">{{ $answer->ten }}: {{ $answer->noi_dung }}</label>
+                                            <form action="{{ route('surveys.store') }}" class="position-relative" method="POST">
+                                                @csrf
+                                                <h2 class="text-success font-weight-bold">A. THÔNG TIN CÁ NHÂN</h2>
+
+                                                <div class="form-group row">
+                                                    <label for="name" class="col-sm-2 col-form-label">Họ và tên</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" name="name" id="name" placeholder="Họ và tên">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="code_student" class="col-sm-2 col-form-label">Mã sinh viên</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" name="code_student" id="code_student" placeholder="Mã sinh viên">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="gender" class="col-sm-2 col-form-label">Giới tính</label>
+                                                    <div class="col-sm-10">
+                                                      <select name="gender" id="gender" class="form-control">
+                                                        <option value="">Chọn giới tính</option>
+                                                        <option value="Nam">Nam</option>
+                                                        <option value="Nữ">Nữ</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="code_class" class="col-sm-2 col-form-label">Mã lớp <span class="text-danger">*</span></label>
+                                                <div class="col-sm-10">
+                                                    <select name="code_class" id="code_class" class="form-control">
+                                                        <option value="">Chọn mã lớp</option>
+                                                        @foreach ($classes as $class)
+                                                        <option value="{{ $class->id }}">{{ $class->ma_lop }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    {!! $errors->first('code_class', '<span class="error">:message</span>') !!}
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="phone" class="col-sm-2 col-form-label">Số điện thoại</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" name="phone" id="phone" placeholder="Điện thoại">
+                                                    {!! $errors->first('phone', '<span class="error">:message</span>') !!}
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="email" class="col-sm-2 col-form-label">Email</label>
+                                                <div class="col-sm-10">
+                                                    <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+                                                </div>
+                                            </div>
+
+                                            <h2 class="text-success font-weight-bold">B. THÔNG TIN VỀ TÌNH HÌNH VIỆC LÀM</h2>
+
+                                            @php
+                                            $stt = -1;
+                                            @endphp
+                                            <div class="questions pl-3 position-relative">
+                                                @foreach ($questions as $question)
+                                                @php
+                                                $stt++;
+                                                @endphp
+                                                <div class="question survey_step" id="answers{{ $stt }}" data-step="{{ $stt+1 }}">
+                                                    <h4 class="text-danger">{{ $question->ten }}: {{ $question->noi_dung }}</h4>
+                                                    @foreach ($question->answers as $answer)
+                                                    <div class="pl-3">
+                                                        @if ($question->cach_chon_dap_an == 1)
+                                                        <input class="form-check-input" type="checkbox" name="answers[{{ $stt }}][{{ $question->id }}][{{ $answer->id }}]" value="{{ $answer->id }}" id="answer{{ $answer->id }}" data-val="{{ $answer->noi_dung }}">
+
+                                                        <input class="form-check-input" type="checkbox" name="check_answers[{{ $stt }}][{{ $question->id }}]" id="checked_answer{{ $answer->id }}" hidden data-val="{{ $answer->noi_dung }}">
+                                                        @else
+                                                        <input class="form-check-input" type="radio" name="answers[{{ $stt }}][{{ $question->id }}]" value="{{ $answer->id }}" id="answer{{ $answer->id }}" data-val="{{ $answer->noi_dung }}">
+                                                        @endif
+                                                        <label for="answer{{ $answer->id }}">{{ $answer->ten }}: {{ $answer->noi_dung }}</label>
+                                                    </div>
+
+                                                    @endforeach
+                                                </div>
+                                                @endforeach
+
+                                                <div class="text-center">
+                                                    <button id="back_button" type="button" class="btn btn-primary mb-2 disabled">Quay lại</button>
+                                                    <button id="next_button" type="button" class="btn btn-primary mb-2 disabled">Tiếp tục</button>
+                                                    <button id="submit_button" type="submit" class="btn btn-primary mb-2 disabled">Hoàn tất</button>
+                                                    <a class="btn btn-primary mb-2" href="{{ route('dashboard') }}">Thoát</a>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-
-                        @endforeach
-                    </div>
-                    @endforeach
-
-                    <div class="text-center">
-                        <button id="back_button" type="button" class="btn btn-primary mb-2 disabled">Quay lại</button>
-                        <button id="next_button" type="button" class="btn btn-primary mb-2 disabled">Tiếp tục</button>
-                        <button id="submit_button" type="submit" class="btn btn-primary mb-2 disabled">Hoàn tất</button>
-                        <a class="btn btn-primary mb-2" href="{{ route('dashboard') }}">Thoát</a>
-                    </div>
+                    </div> <!-- container-fluid -->
                 </div>
-            </form>
+                <!-- End Page-content -->
+
+
+
+            </div>
+            <!-- end main content-->
+
         </div>
-    </div>
-    </div>
-    </div>
-    </div> <!-- container-fluid -->
-    </div>
-    <!-- End Page-content -->
+        <!-- END layout-wrapper -->
 
+        
 
-    
-    </div>
-@endsection
+        <script src="{{ asset('libs/jquery/jquery.min.js') }}"></script>
+        <script src="{{ asset('libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ asset('libs/metismenu/metisMenu.min.js') }}"></script>
+        <script src="{{ asset('libs/simplebar/simplebar.min.js') }}"></script>
+        <script src="{{ asset('libs/node-waves/waves.min.js') }}"></script>
+        <!-- toastr plugin -->
+        <script src="{{ asset('libs\toastr\build\toastr.min.js') }}"></script>
 
-@push('js')
+        <script type="text/javascript">
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            
+            // add class paginate theme
+            $('ul.pagination').addClass('pagination-rounded justify-content-center mt-4');
+            
+            // toastr noti
+            @if(Session::has('alert-success'))
+                Command: toastr["success"]("{{ Session::get('alert-success') }}")
 
-    <script type="text/javascript">
+                toastr.options = {
+                  "closeButton": false,
+                  "debug": false,
+                  "newestOnTop": false,
+                  "progressBar": false,
+                  "positionClass": "toast-top-right",
+                  "preventDuplicates": false,
+                  "onclick": null,
+                  "showDuration": 300,
+                  "hideDuration": 1000,
+                  "timeOut": 5000,
+                  "extendedTimeOut": 1000,
+                  "showEasing": "swing",
+                  "hideEasing": "linear",
+                  "showMethod": "fadeIn",
+                  "hideMethod": "fadeOut"
+                }
+            @endif
 
-        let total_question = JSON.parse(`<?= $questions->count() ?>`);
-        function next(step, next_step) {
-            if (next_step == 3 && step == 1) {
-                $('body').attr('data-prev', 1);
-            } else {
-                $('body').attr('data-prev', step);
+            @if(Session::has('alert-error'))
+                Command: toastr["error"]("{{ Session::get('alert-error') }}")
+
+                toastr.options = {
+                  "closeButton": false,
+                  "debug": false,
+                  "newestOnTop": false,
+                  "progressBar": false,
+                  "positionClass": "toast-top-right",
+                  "preventDuplicates": false,
+                  "onclick": null,
+                  "showDuration": 300,
+                  "hideDuration": 1000,
+                  "timeOut": 5000,
+                  "extendedTimeOut": 1000,
+                  "showEasing": "swing",
+                  "hideEasing": "linear",
+                  "showMethod": "fadeIn",
+                  "hideMethod": "fadeOut"
+                }
+            @endif
+        </script>
+
+        <link rel="stylesheet" href="{{ asset('slick/slick.css') }}">
+        <style>
+            .survey_step {
+                display: none;
             }
 
-            var value = $('.survey_step[data-step="'+next_step+'"]').find('.form-check-input:checked').data('val')
-
-
-            if (value) {
-                $('#next_button').removeClass('disabled');
-            } else {
-                $('#next_button').addClass('disabled');
+            .survey_step[data-step="1"] {
+                display: block;
             }
 
-            $('#back_button').removeClass('disabled');
-        }
+            label {
+                font-size: 15px;
+            }
+        </style>
 
-        function back(step, prev_step) {
-
-            $('body').attr('data-step', prev_step);
-
-            if (prev_step == 3) {
-
-                var value = $('.survey_step[data-step="1"]').find('.form-check-input:checked').data('val');
-                // Kiểm tra câu 2
-                if (value == 'Đang có việc làm' || value == 'Đang vừa làm vừa học') {
+        <script type="text/javascript">
+            let total_question = JSON.parse(`<?= $questions->count() ?>`);
+            function next(step, next_step) {
+                if (next_step == 3 && step == 1) {
                     $('body').attr('data-prev', 1);
-                }
-
-                if (value == 'Chưa có việc làm') {
-                    $('body').attr('data-prev', 2);
-                }
-            } else {
-                $('body').attr('data-prev', parseFloat(prev_step) - 1);
-            }
-
-            var value = $('.survey_step[data-step="'+prev_step+'"]').find('.form-check-input:checked').data('val')
-
-            if (value) {
-                $('#next_button').removeClass('disabled');
-            } else {
-                $('#next_button').addClass('disabled');
-            }
-
-            $('#submit_button').addClass('disabled');
-            $('body').attr('data-next', parseFloat(prev_step) + 1);
-        }
-
-        function condition(step, next_step) {
-            if (step == 1) {
-                $('#back_button').addClass('disabled');
-
-                var value = $('.survey_step[data-step="1"]').find('.form-check-input:checked').data('val');
-                // Kiểm tra câu 2
-                if (value == 'Đang có việc làm' || value == 'Đang vừa làm vừa học') {
-                    $('body').attr('data-next', 3);
-                }
-
-                if (value == 'Chưa có việc làm') {
-                    $('body').attr('data-next', 2);
-                }
-
-                if (value == 'Đang học tiếp' || value == 'Chưa có nhu cầu') {
-                    $('#submit_button').removeClass('disabled');
-                    $('#next_button').addClass('disabled');
                 } else {
-                    $('#submit_button').addClass('disabled');
+                    $('body').attr('data-prev', step);
                 }
 
-            } 
-            if (step == 2) {
-                $('#submit_button').removeClass('disabled');
-                $('#next_button').addClass('disabled');
-            }
-            if (step == 8) {
-                var value = $('.survey_step[data-step="8"]').find('.form-check-input:checked').data('val');
-                // Kiểm tra câu 8
-                if (value == 'Đúng ngành đào tạo' || value == 'Có liên quan đến ngành đào tạo') {
-                    $('body').attr('data-next', 10);
+                var value = $('.survey_step[data-step="'+next_step+'"]').find('.form-check-input:checked').data('val')
 
-                }
-                else {
-                    $('body').attr('data-next', 9);
-                }
-            } else if (step == total_question || step == 9) {
-                $('#submit_button').removeClass('disabled');
-                $('#next_button').addClass('disabled');
-            }
-        }
 
-        jQuery(document).ready(function() {
-
-            $('.form-check-input').change(function() {
-
-                var step = $('body').attr('data-step');
-                var next_step = $('body').attr('data-next');
-
-                condition(step, next_step);
-
-                var value = $('.survey_step[data-step="'+step+'"]').find('.form-check-input:checked').data('val')
-                
                 if (value) {
-                    if (value == 'Đang học tiếp' || value == 'Chưa có nhu cầu') {
-                        $('#next_button').addClass('disabled');
-                    } else {
-                        $('#next_button').removeClass('disabled');
+                    $('#next_button').removeClass('disabled');
+                } else {
+                    $('#next_button').addClass('disabled');
+                }
+
+                $('#back_button').removeClass('disabled');
+            }
+
+            function back(step, prev_step) {
+
+                $('body').attr('data-step', prev_step);
+
+                if (prev_step == 3) {
+
+                    var value = $('.survey_step[data-step="1"]').find('.form-check-input:checked').data('val');
+                    // Kiểm tra câu 2
+                    if (value == 'Đang có việc làm' || value == 'Đang vừa làm vừa học') {
+                        $('body').attr('data-prev', 1);
+                    }
+
+                    if (value == 'Chưa có việc làm') {
+                        $('body').attr('data-prev', 2);
                     }
                 } else {
+                    $('body').attr('data-prev', parseFloat(prev_step) - 1);
+                }
+
+                var value = $('.survey_step[data-step="'+prev_step+'"]').find('.form-check-input:checked').data('val')
+
+                if (value) {
+                    $('#next_button').removeClass('disabled');
+                } else {
                     $('#next_button').addClass('disabled');
                 }
 
-                if (!$('#submit_button').hasClass('disabled')) {
+                $('#submit_button').addClass('disabled');
+                $('body').attr('data-next', parseFloat(prev_step) + 1);
+            }
+
+            function condition(step, next_step) {
+                if (step == 1) {
+                    $('#back_button').addClass('disabled');
+
+                    var value = $('.survey_step[data-step="1"]').find('.form-check-input:checked').data('val');
+                    // Kiểm tra câu 2
+                    if (value == 'Đang có việc làm' || value == 'Đang vừa làm vừa học') {
+                        $('body').attr('data-next', 3);
+                    }
+
+                    if (value == 'Chưa có việc làm') {
+                        $('body').attr('data-next', 2);
+                    }
+
+                    if (value == 'Đang học tiếp' || value == 'Chưa có nhu cầu') {
+                        $('#submit_button').removeClass('disabled');
+                        $('#next_button').addClass('disabled');
+                    } else {
+                        $('#submit_button').addClass('disabled');
+                    }
+
+                } 
+                if (step == 2) {
+                    $('#submit_button').removeClass('disabled');
                     $('#next_button').addClass('disabled');
                 }
+                if (step == 8) {
+                    var value = $('.survey_step[data-step="8"]').find('.form-check-input:checked').data('val');
+                    // Kiểm tra câu 8
+                    if (value == 'Đúng ngành đào tạo' || value == 'Có liên quan đến ngành đào tạo') {
+                        $('body').attr('data-next', 10);
 
-            });
+                    }
+                    else {
+                        $('body').attr('data-next', 9);
+                    }
+                } else if (step == total_question || step == 9) {
+                    $('#submit_button').removeClass('disabled');
+                    $('#next_button').addClass('disabled');
+                }
+            }
 
-            $('#next_button').click(function() {
+            jQuery(document).ready(function() {
 
-                if (!$(this).hasClass('disabled')) {
+                $('.form-check-input').change(function() {
 
                     var step = $('body').attr('data-step');
                     var next_step = $('body').attr('data-next');
 
                     condition(step, next_step);
 
-                    if (!next_step) {
-                        next_step = parseFloat(step) + 1;
-                    }
-
-                    if (next_step == 0) {
-                        next_step = parseFloat(step) + 1;
-                        $('#submit_button').removeClass('disabled');
-                        $('#next_button').addClass('disabled');
+                    var value = $('.survey_step[data-step="'+step+'"]').find('.form-check-input:checked').data('val')
+                    
+                    if (value) {
+                        if (value == 'Đang học tiếp' || value == 'Chưa có nhu cầu') {
+                            $('#next_button').addClass('disabled');
+                        } else {
+                            $('#next_button').removeClass('disabled');
+                        }
                     } else {
-                        $('body').attr('data-next', parseFloat(next_step) + 1);
+                        $('#next_button').addClass('disabled');
                     }
-
-                    $('body').attr('data-step', next_step);
-
-                    next(step, next_step);
-
-                    $('.survey_step').hide();
-                    $('.survey_step[data-step="'+next_step+'"]').show();
 
                     if (!$('#submit_button').hasClass('disabled')) {
                         $('#next_button').addClass('disabled');
                     }
 
-                }
+                });
 
-                return false;
+                $('#next_button').click(function() {
 
-            });
+                    if (!$(this).hasClass('disabled')) {
 
-            $('#back_button').click(function() {
+                        var step = $('body').attr('data-step');
+                        var next_step = $('body').attr('data-next');
 
-                if (!$(this).hasClass('disabled')) {
+                        condition(step, next_step);
 
-                    var step = $('body').attr('data-step');
-                    var prev_step = $('body').attr('data-prev');
+                        if (!next_step) {
+                            next_step = parseFloat(step) + 1;
+                        }
 
-                    back(step, prev_step);
+                        if (next_step == 0) {
+                            next_step = parseFloat(step) + 1;
+                            $('#submit_button').removeClass('disabled');
+                            $('#next_button').addClass('disabled');
+                        } else {
+                            $('body').attr('data-next', parseFloat(next_step) + 1);
+                        }
 
-                    $('.survey_step').hide();
-                    $('.survey_step[data-step="'+prev_step+'"]').show();
+                        $('body').attr('data-step', next_step);
 
-                    condition(prev_step, step);
-                }
+                        next(step, next_step);
 
-                return false;
+                        $('.survey_step').hide();
+                        $('.survey_step[data-step="'+next_step+'"]').show();
 
-            });
+                        if (!$('#submit_button').hasClass('disabled')) {
+                            $('#next_button').addClass('disabled');
+                        }
 
-            $('#submit_button').click(function() {
-                if ($(this).hasClass('disabled')) {
+                    }
+
                     return false;
-                }
+
+                });
+
+                $('#back_button').click(function() {
+
+                    if (!$(this).hasClass('disabled')) {
+
+                        var step = $('body').attr('data-step');
+                        var prev_step = $('body').attr('data-prev');
+
+                        back(step, prev_step);
+
+                        $('.survey_step').hide();
+                        $('.survey_step[data-step="'+prev_step+'"]').show();
+
+                        condition(prev_step, step);
+                    }
+
+                    return false;
+
+                });
+
+                $('#submit_button').click(function() {
+                    if ($(this).hasClass('disabled')) {
+                        return false;
+                    }
+                });
+
             });
+        </script>
+        @stack('js')
+        
+        <!-- App js -->
+        <script src="{{ asset('js/app.js') }}"></script>
+    </body>
+</html>
 
-        });
-    </script>
-@endpush
 
-@push('css')
-    <link rel="stylesheet" href="{{ asset('slick/slick.css') }}">
-    <style>
-        .survey_step {
-            display: none;
-        }
 
-        .survey_step[data-step="1"] {
-            display: block;
-        }
-
-        label {
-            font-size: 15px;
-        }
-    </style>
-@endpush
+@section('content')
+    
+@endsection
