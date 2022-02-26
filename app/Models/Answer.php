@@ -13,6 +13,7 @@ class Answer extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'id',
         'cau_hoi_id',
         'ten',
         'noi_dung',

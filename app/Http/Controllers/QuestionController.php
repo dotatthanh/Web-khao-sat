@@ -121,6 +121,7 @@ class QuestionController extends Controller
 
             foreach ($request->answers as $value) {
                 Answer::create([
+                    'id' => $value['id'],
                     'cau_hoi_id' => $question->id,
                     'ten' => $value['name'],
                     'noi_dung' => $value['content'],

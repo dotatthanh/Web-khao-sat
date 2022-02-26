@@ -50,6 +50,7 @@
                     <div class="form-group col-lg-3 custom-validate-select">
                         <label for="name">Tên phương án <span class="text-danger">*</span></label>
                         <input type="text" id="name" name="name" name="name" class="form-control" required data-parsley-maxlength="10" placeholder="VD: A, B" value="{{ $answer->ten }}">
+                        <input hidden type="text" id="id" name="id" class="form-control" value="{{ $answer->id }}">
                     </div>
 
                     <div class="form-group col-lg-8">
