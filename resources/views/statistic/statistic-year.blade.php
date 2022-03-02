@@ -50,8 +50,8 @@
                                                     <td class="text-center">{{ $stt++ }}</td>
                                                     <td>{{ $class->ma_lop }}</td>
                                                     <td>{{ $class->total }}</td>
-                                                    <td>{{ $class->dang_lam_viec }}</td>
-                                                    <td>{{ $class->chua_co_viec }}</td>
+                                                    <td>{{ number_format($class->dang_lam_viec / $class->total * 100, 1) }}%</td>
+                                                    <td>{{ number_format($class->chua_co_viec / $class->total * 100, 1) }}%</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
